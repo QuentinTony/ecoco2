@@ -8,6 +8,8 @@
 		<jta-data-source>java:/ecoco</jta-data-source>
 
 		<!-- énumération des classes persistentes -->
+		<class>fr.adaming.model.Produit</class>
+		<class>fr.adaming.model.Categorie</class>
 
 		<!-- les propriétés de hibernate -->
 		<properties>
