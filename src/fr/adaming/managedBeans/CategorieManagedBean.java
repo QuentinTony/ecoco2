@@ -68,7 +68,7 @@ public class CategorieManagedBean implements Serializable {
 		if (caOut != null) {
 			this.listeCategories = caService.getAllCategory();
 		
-			return "accueilSite";
+			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout n'a pas pu être effectué"));
 			return "addCategory";
@@ -80,11 +80,11 @@ public class CategorieManagedBean implements Serializable {
 		int verif = caService.deleteCategory(this.categorie);
 		if (verif != 0) {
 			this.listeCategories = caService.getAllCategory();
-			return "accueilSite";
+			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("La suppression n'a pas pu être effectuée"));
-			return "accueilSite";
+			return "accueilAdmin";
 		}
 
 	}
@@ -109,11 +109,13 @@ public class CategorieManagedBean implements Serializable {
 		int verif = caService.updateCategory(this.categorie);
 		if (verif != 0) {
 			this.listeCategories = caService.getAllCategory();
-			return "accueilSite";
+			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("La modification n'a pas pu être effectuée"));
 			return "updateCategory";
 		}
 	}
+	
+	
 }

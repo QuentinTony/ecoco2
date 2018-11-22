@@ -36,7 +36,7 @@ public class Client implements Serializable {
 	protected String tel;
 
 	// association onetomany avec commande
-	@OneToMany(mappedBy = "client", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "client", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY) 
 	protected List<Commande> listeCommandes;
 
 	@OneToMany(mappedBy = "client")

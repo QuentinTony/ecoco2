@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
 import fr.adaming.model.Produit;
 
@@ -27,7 +28,7 @@ public class ProduitDaoImpl implements IProduitDao {
 	public List<Produit> getProductbyClient(Client cl) {
 		String req = "SELECT p FROM Produit p WHERE p.client.id=:pIdcl";
 		Query query = em.createQuery(req);
-		query.setParameter("pIdf", cl.getId());
+		query.setParameter("pIdcl", cl.getId());
 		return query.getResultList();
 	}
 
@@ -58,6 +59,15 @@ public class ProduitDaoImpl implements IProduitDao {
 		query.setParameter("pPhoto", p.getPhoto());
 		query.setParameter("pIdProduit", p.getIdProduit());
 		return query.executeUpdate();
+	}
+
+	@Override
+	public List<Produit> getProductbyCategory(Categorie ca) {
+		String req = "SELECT p FROM Produit p WHERE p.categorie.id=:pIdca";
+		Query query = em.createQuery(req);
+		query.setParameter("pIdca", ca.getIdCategorie());
+		return query.getResultList();
+	
 	}
 
 }

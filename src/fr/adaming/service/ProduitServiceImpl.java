@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
 import fr.adaming.dao.IProduitDao;
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
 import fr.adaming.model.Produit;
 
@@ -43,6 +44,11 @@ public class ProduitServiceImpl implements IProduitService {
 	public int updateProduit(Produit p, Client cl) {
 		p.setClient(cl);
 		return pDao.updateProduit(p);
+	}
+
+	@Override
+	public List<Produit> getProductbyCategory(Categorie ca) {
+		return pDao.getProductbyCategory(ca);
 	}
 
 }
