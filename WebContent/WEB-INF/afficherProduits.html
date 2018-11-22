@@ -22,17 +22,40 @@
 
 		<ui:define name="monBody">
 
-			<h:form id="tableCat">
-				<p:dataTable var="cat" value="#{caMB.listeCategories}">
+			<h:form id="tablePdt">
+				<p:dataTable var="p" value="#{sessionScope.listeProduitsSession}">
+
+					<p:column headerText="ID">
+						<h:outputText value="#{p.idProduit}" />
+					</p:column>
+
+					<p:column headerText="Nom">
+						<h:outputText value="#{p.designation}" />
+					</p:column>
+
+					<p:column headerText="Description">
+						<h:outputText value="#{p.description}" />
+					</p:column>
+
+					<p:column headerText="Prix">
+						<h:outputText value="#{p.prix}" />
+					</p:column>
+
+					<p:column headerText="Stock">
+						<h:outputText value="#{p.quantite}" />
+					</p:column>
 
 					<p:column headerText="Photo">
-						<p:commandLink action="#{pMB.getProductsByCategory}" ajax="false"
+						<h:outputText value="#{p.photo}" />
+					</p:column>
+
+					<p:column>
+						<p:commandLink action="#{pMB.addToPanier}" ajax="false"
 							title="#{cat.nomCategorie}">
 							<h:graphicImage value="resources/images/Trash_32px.png" />
 							<f:setPropertyActionListener value="#{pMB.categorie}"
 								target="#{pMB.categorie}"></f:setPropertyActionListener>
 						</p:commandLink>
-						<h:outputText value="#{cat.photo}" />
 					</p:column>
 
 				</p:dataTable>
@@ -50,4 +73,5 @@
 	</ui:composition>
 
 </h:body>
+
 </html>
