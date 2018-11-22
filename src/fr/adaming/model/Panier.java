@@ -6,7 +6,7 @@ public class Panier {
 
 	// atributs
 
-	private List<LigneCommande> listeCommandes;
+	private List<LigneCommande> listeLigneCommandes;
 
 	private double prixTotal;
 
@@ -18,18 +18,18 @@ public class Panier {
 
 	public Panier(List<LigneCommande> listeCommandes, double prixTotal) {
 		super();
-		this.listeCommandes = listeCommandes;
+		this.listeLigneCommandes = listeCommandes;
 		this.prixTotal = prixTotal;
 	}
 
 	// getter setter
 
-	public List<LigneCommande> getListeCommandes() {
-		return listeCommandes;
+	public List<LigneCommande> getListeLigneCommandes() {
+		return listeLigneCommandes;
 	}
 
-	public void setListeCommandes(List<LigneCommande> listeCommandes) {
-		this.listeCommandes = listeCommandes;
+	public void setListeLigneCommandes(List<LigneCommande> listeCommandes) {
+		this.listeLigneCommandes = listeCommandes;
 	}
 
 	public double getPrixTotal() {
