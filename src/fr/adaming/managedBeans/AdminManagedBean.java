@@ -47,21 +47,19 @@ public class AdminManagedBean {
 		Admin aOut = aService.isExist(admin);
 
 		if (aOut != null) {
-			
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("aSession",
-					aOut);
+
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("aSession", aOut);
 
 			return "accueilAdmin";
-			
-		}else {
-			
+
+		} else {
+
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Identifiants invalides"));
-			
+
 			return "accueilSite";
-			
+
 		}
-	
+
 	}
-	
 
 }

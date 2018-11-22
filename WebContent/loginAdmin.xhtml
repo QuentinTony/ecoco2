@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+Mail : <h:inputText value="#{aMB.admin.mail}" />
+Mot de passe : <h:inputText value="#{aMB.admin.mdp}" />
+
+		<h:commandButton value="Se connecter" action="#{aMB.isExist}"/>
+	</h:form>
+
+</h:body>
+</html>
