@@ -3,6 +3,7 @@ package fr.adaming.dao;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import fr.adaming.model.Client;
 
@@ -49,6 +50,20 @@ public class ClientDaoImpl implements IClientDao {
 		Client clOut = em.find(Client.class, cl.getId());
 
 		return clOut;
+	}
+
+	@Override
+	public Client isExist(Client cl) {
+		// requete jpql
+
+		String req = "SELECT cl FROM Client as cl WHERE cl.mail=:pMail AND cl.mdp=:pMdp";
+
+		// création du query
+
+		Query query = em.createQuery(req);
+		query.setParameter("pMail", cl.getMail());
+		query.setParameter("pMdp", cl.getMdp());
+		return (Client) query.getSingleResult();
 	}
 
 }

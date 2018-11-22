@@ -66,6 +66,7 @@ public class CategorieManagedBean implements Serializable {
 	public String addCategory() {
 		Categorie caOut = caService.addCategory(this.categorie);
 		if (caOut != null) {
+			
 			this.listeCategories = caService.getAllCategory();
 		
 			return "accueilAdmin";

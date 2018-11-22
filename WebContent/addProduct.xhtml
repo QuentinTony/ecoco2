@@ -11,15 +11,16 @@
 </h:head>
 
 <h:body>
-
+<h:form>
 designation : <h:inputText value="#{pMB.produit.designation}" />
 description : <h:inputText value="#{pMB.produit.description}" />
 prix :<p:inputText value="#{pMB.produit.prix}" />
 quantité : <p:inputText value="#{pMB.produit.quantite}" />
 
-photo : 
-<p:commandButton value="Ajouter un produit" action="#{pMB.addProduct}"  style="margin-right:20px"/>
-
+photo : <p:fileUpload value="#{fileUploadView.file}" mode="simple"
+			skinSimple="true" />
+<p:commandButton value="Ajouter un produit" action="#{pMB.addProduct}"  style="margin-right:20px"  ajax="false"/>
+</h:form>
 </h:body>
 
 </html>

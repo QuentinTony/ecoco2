@@ -14,5 +14,8 @@ public interface IClientService {
 	public int updateClient(Client cl);
 
 	public Client getClient(Client cl);
+	
+	public Client isExist(Client cl);
+
 
 }

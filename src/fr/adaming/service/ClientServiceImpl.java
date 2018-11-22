@@ -49,4 +49,10 @@ public class ClientServiceImpl implements IClientService {
 		return clDao.getClient(cl);
 	}
 
+	@Override
+	public Client isExist(Client cl) {
+		// TODO Auto-generated method stub
+		return clDao.isExist(cl);
+	}
+
 }

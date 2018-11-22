@@ -15,4 +15,6 @@ public interface IClientDao {
 	
 	public Client getClient(Client cl);
 	
+	public Client isExist(Client cl);
+
 }

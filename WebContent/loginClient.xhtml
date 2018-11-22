@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Bienvenue dans votre espace Client</title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+Mail : <h:inputText value="#{clMB.client.mail}" />
+Mot de passe : <h:inputText value="#{clMB.client.mdp}" />
+
+		<h:commandButton value="Se connecter" action="#{clMB.isExist}"/>
+	</h:form>
+
+</h:body>
+</html>

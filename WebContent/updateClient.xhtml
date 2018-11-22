@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Ajouter un client</title>
+</h:head>
+
+<h:body>
+	<h:form>
+Id : <h:inputHidden value="#{clMB.client.id}" />
+Nom : <h:inputText value="#{clMB.client.nom}" />
+Adresse : <h:inputText value="#{clMB.client.adresse}" />
+Tel : <h:inputHidden value="#{clMB.client.tel}" />
+Mail : <h:inputHidden value="#{clMB.client.mail" />
+Mdp : <h:inputText value="#{clMB.client.mdp}" />
+
+
+		<p:commandButton value="Modifier un client"
+			action="#{clMB.updateClient}" style="margin-right:20px" />
+	</h:form>
+
+</h:body>
+</html>
