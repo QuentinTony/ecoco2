@@ -13,6 +13,7 @@
 		<class>fr.adaming.model.Client</class>
 		<class>fr.adaming.model.Commande</class>
 		<class>fr.adaming.model.LigneCommande</class>
+		<class>fr.adaming.model.Admin</class>
 
 		<!-- les propriétés de hibernate -->
 		<properties>

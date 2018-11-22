@@ -10,12 +10,10 @@
 		<!-- énumération des classes persistentes -->
 		<class>fr.adaming.model.Produit</class>
 		<class>fr.adaming.model.Categorie</class>
-<<<<<<< HEAD
 		<class>fr.adaming.model.Client</class>
 		<class>fr.adaming.model.Commande</class>
 		<class>fr.adaming.model.LigneCommande</class>
-=======
->>>>>>> branch 'master' of https://github.com/QuentinTony/ecoco2.git
+		<class>fr.adaming.model.Admin</class>
 
 		<!-- les propriétés de hibernate -->
 		<properties>

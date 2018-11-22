@@ -25,32 +25,38 @@ public class Client implements Serializable {
 	private String nom;
 	private String adresse;
 	private String mail;
+	private String mdp;
 	private String tel;
 
 	// association onetomany avec commande
 	@OneToMany(mappedBy = "client", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	private List<Commande> listeCommandes;
 
+	@OneToMany(mappedBy="client")
+	private List<Produit> listeProduits;
+	
 	// constructeurs
 
 	public Client() {
 
 	}
 
-	public Client(String nom, String adresse, String mail, String tel) {
+	public Client(String nom, String adresse, String mail,String mdp, String tel) {
 		super();
 		this.nom = nom;
 		this.adresse = adresse;
 		this.mail = mail;
+		this.mdp=mdp;
 		this.tel = tel;
 	}
 
-	public Client(long id, String nom, String adresse, String mail, String tel) {
+	public Client(long id, String nom, String adresse, String mail,String mdp, String tel) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.adresse = adresse;
 		this.mail = mail;
+		this.mdp=mdp;
 		this.tel = tel;
 	}
 
@@ -103,5 +109,15 @@ public class Client implements Serializable {
 	public void setListeCommandes(List<Commande> listeCommandes) {
 		this.listeCommandes = listeCommandes;
 	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+	
+	
 
 }
