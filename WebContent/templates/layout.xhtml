@@ -7,23 +7,50 @@
 
 <h:head>
 	<title></title>
+	<h:outputStylesheet library="css" name="monCSS.css" />
 </h:head>
 
 <h:body>
 
-	<div>
+	<div class="headerStyle">
 		<ui:insert name="monHeader">
 			<ui:include src="/templates/header.xhtml"></ui:include>
 		</ui:insert>
 	</div>
- 
-	<div>
+
+	<h:form>
+
+		<p:menubar>
+
+			<p:menuitem value="Accueil" url="accueilSite.xhtml" />
+
+			<p:menuitem value="Espace Client" url="loginClient.xhtml" />
+
+			<p:menuitem value="Espace Admin" url="loginAdmin.xhtml" />
+
+			<f:facet name="categories">
+				<p:selectOneMenu value="#{caMB.categorie.idCategorie}">
+					<f:selectItems value="#{caMB.listeCategories}" var="cat"
+						itemLabel="#{cat.nom}" itemValue="#{cat.idCategorie}" />
+				</p:selectOneMenu>
+			</f:facet>
+
+
+		</p:menubar>
+
+	</h:form>
+
+	<br></br>
+
+	<div class="bodyStyle">
 		<ui:insert name="monBody">
 			<ui:include src="/templates/body.xhtml"></ui:include>
 		</ui:insert>
 	</div>
 
-	<div>
+	<br></br>
+
+	<div class="footerStyle">
 		<ui:insert name="monFooter">
 			<ui:include src="/templates/footer.xhtml"></ui:include>
 		</ui:insert>

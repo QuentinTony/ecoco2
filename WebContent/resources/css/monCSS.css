@@ -1,0 +1,15 @@
+.bodyStyle {
+	margin-left: 60px;
+	margin-right: 60px;
+	height: 600px;
+}
+
+.headerStyle {
+	background-color: darkblue;
+	height: 120px;
+}
+
+.footerStyle {
+	background-color: darkblue;
+	height: 120px;
+}

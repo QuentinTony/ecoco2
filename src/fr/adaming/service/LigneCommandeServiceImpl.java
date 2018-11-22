@@ -17,9 +17,7 @@ public class LigneCommandeServiceImpl implements ILigneCommandeService{
 	
 	@Override
 	public LigneCommande addLigneCommande(LigneCommande lc, Commande co, Client cl) {
-		
-		
-		
+
 		return null;
 	}
 

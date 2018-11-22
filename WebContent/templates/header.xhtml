@@ -11,26 +11,10 @@
 
 <h:body>
 	<ui:composition>
-		<h:form>
-
-			<p:menubar>
-
-				<p:menuitem value="Accueil" url="accueilSite.xhtml"/>
-
-				<p:menuitem value="Espace Client" url="loginClient.xhtml" />
-
-				<p:menuitem value="Espace Admin" url="loginAdmin.xhtml" />
-
-				<f:facet name="categories">
-					<p:selectOneMenu value="#{caMB.categorie.idCategorie}">
-						<f:selectItems value="#{caMB.listeCategories}" var="cat"
-							itemLabel="#{cat.nom}" itemValue="#{cat.idCategorie}" />
-					</p:selectOneMenu>
-				</f:facet>
-
-
-			</p:menubar>
-		</h:form>
+		<br />
+		<h1 style="text-align: center; color: white">JVCommerce</h1>
+		<p style="text-align: center; color: white">Le site de vos achats
+			et ventes de Jeux Videos</p>
 	</ui:composition>
 </h:body>
 </html>

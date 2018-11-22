@@ -12,8 +12,8 @@ import fr.adaming.model.Produit;
 
 @Stateful
 public class ProduitServiceImpl implements IProduitService {
-	
-	//transformation de l'association UML en Java
+
+	// transformation de l'association UML en Java
 	@EJB
 	public IProduitDao pDao;
 
@@ -49,6 +49,12 @@ public class ProduitServiceImpl implements IProduitService {
 	@Override
 	public List<Produit> getProductbyCategory(Categorie ca) {
 		return pDao.getProductbyCategory(ca);
+	}
+
+	@Override
+	public Produit getProduit(Produit p) {
+		
+		return pDao.getProduit(p);
 	}
 
 }

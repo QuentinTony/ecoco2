@@ -19,6 +19,8 @@ public interface IProduitService {
 	
 	public Produit getProduit(Produit p, Client cl);
 	
+	public Produit getProduit(Produit p);
+	
 	public int updateProduit(Produit p, Client cl);
 	
 	public List<Produit> getProductbyCategory (Categorie ca);

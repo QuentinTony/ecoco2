@@ -25,6 +25,10 @@
 			<h:form id="tablePdt">
 				<p:dataTable var="p" value="#{sessionScope.listeProduitsSession}">
 
+					<p:column>
+						<p:selectBooleanCheckbox value="#{p.selectionne}" />
+					</p:column>
+
 					<p:column headerText="ID">
 						<h:outputText value="#{p.idProduit}" />
 					</p:column>
@@ -49,13 +53,27 @@
 						<h:outputText value="#{p.photo}" />
 					</p:column>
 
-					<p:column>
-						<p:commandLink action="#{pMB.addToPanier}" ajax="false"
+					<p:column style="width:300px">
+
+						<h:commandButton image="resources/images/addProduit.png"
+							action="#{paMB.addToPanier}">
+							<f:setPropertyActionListener value="#{p}"
+								target="#{paMB.produit}"></f:setPropertyActionListener>
+
+						</h:commandButton>
+
+						<p:spinner id="basic" value="#{paMB.quantite}" max="#{p.quantite}"
+							min="0" size="20" >
+							<f:validator validatorId="vAddPanier" />
+						</p:spinner>
+
+						<p:commandLink action="#{paMB.addToPanier}" ajax="false"
 							title="Ajouter au panier">
-							<h:graphicImage value="resources/images/Trash_32px.png" />
-							<f:setPropertyActionListener value="#{pMB.categorie}"
-								target="#{pMB.categorie}"></f:setPropertyActionListener>
+							<h:graphicImage value="resources/images/addProduit.png" />
+							<f:setPropertyActionListener value="#{paMB.produit}"
+								target="#{paMB.produit}"></f:setPropertyActionListener>
 						</p:commandLink>
+
 					</p:column>
 
 				</p:dataTable>
