@@ -7,9 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import fr.adaming.model.Admin;
 import fr.adaming.model.Categorie;
-import fr.adaming.model.Produit;
 
 @Stateless
 public class CategorieDaoImpl implements ICategorieDao{

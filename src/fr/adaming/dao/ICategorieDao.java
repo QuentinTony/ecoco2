@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import fr.adaming.model.Admin;
 import fr.adaming.model.Categorie;
 
 @Local

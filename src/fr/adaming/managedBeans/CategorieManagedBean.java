@@ -1,19 +1,24 @@
 package fr.adaming.managedBeans;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Admin;
 import fr.adaming.model.Categorie;
-import fr.adaming.model.Produit;
 import fr.adaming.service.ICategorieService;
 
 @ManagedBean(name = "caMB")
-public class CategorieManagedBean {
+@RequestScoped
+public class CategorieManagedBean implements Serializable {
 
 	// transformation et injection de l'asso UML en JAVA
 	@EJB
@@ -21,10 +26,12 @@ public class CategorieManagedBean {
 
 	private Categorie categorie;
 	private Admin admin;
+	HttpSession maSession;
+	private List<Categorie> listeCategories;
 
 	// constructeur vide
 	public CategorieManagedBean() {
-		this.categorie = new Categorie();
+
 	}
 
 	// getter setter
@@ -36,7 +43,21 @@ public class CategorieManagedBean {
 		this.categorie = categorie;
 	}
 
+	public List<Categorie> getListeCategories() {
+		return listeCategories;
+	}
+
+	public void setListeCategories(List<Categorie> listeCategories) {
+		this.listeCategories = listeCategories;
+	}
+
 	// les méthodes
+	@PostConstruct
+	public void init() {
+		this.maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		this.categorie = new Categorie();
+		this.listeCategories= caService.getAllCategory();
+	}
 
 	public String addLinkCategory() {
 		return "addCategory";
@@ -45,8 +66,9 @@ public class CategorieManagedBean {
 	public String addCategory() {
 		Categorie caOut = caService.addCategory(this.categorie);
 		if (caOut != null) {
-			List<Categorie> listeCategories = caService.getAllCategory();
-			return "accueilAdmin";
+			this.listeCategories = caService.getAllCategory();
+		
+			return "accueilSite";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout n'a pas pu être effectué"));
 			return "addCategory";
@@ -57,29 +79,41 @@ public class CategorieManagedBean {
 	public String deleteCategory() {
 		int verif = caService.deleteCategory(this.categorie);
 		if (verif != 0) {
-			List<Categorie> listeCategories = caService.getAllCategory();
-			return "accueilAdmin";
+			this.listeCategories = caService.getAllCategory();
+			return "accueilSite";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("La suppression n'a pas pu être effectuée"));
-			return "accueilAdmin";
+			return "accueilSite";
 		}
 
 	}
-	
+
 	public String getCategory() {
 		Categorie caOut = caService.getCategory(this.categorie);
-		if(caOut!=null) {
-			this.categorie=caOut;
+		if (caOut != null) {
+			this.categorie = caOut;
 			return "getCategory";
-		}else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche n'a pas pu être effectuée"));
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("La recherche n'a pas pu être effectuée"));
 			return "getCategory";
 		}
+	}
+	
+	public String updateLinkCategory() {
+		return "updateCategory";
 	}
 	
 	public String updateCategory() {
 		int verif = caService.updateCategory(this.categorie);
-		return "updateCategory";
+		if (verif != 0) {
+			this.listeCategories = caService.getAllCategory();
+			return "accueilSite";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("La modification n'a pas pu être effectuée"));
+			return "updateCategory";
+		}
 	}
 }

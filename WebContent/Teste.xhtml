@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Bienvenue sur votre site d'e-commerce</title>
+</h:head>
+
+<h:body>
+<h:form>
+<p:dataTable var="ca" value="#{caMB.listeCategories}">
+    <p:column headerText="Id">
+        <h:outputText value="#{ca.idCategorie}" />
+    </p:column>
+ 
+    <p:column headerText="Nom">
+        <h:outputText value="#{ca.nomCategorie}" />
+    </p:column>
+ 
+    <p:column headerText="Description">
+        <h:outputText value="#{ca.description}" />
+    </p:column>
+    
+    <p:column headerText="Photo">
+        <h:outputText value="#{ca.photo}" />
+    </p:column>
+    
+      <p:column headerText="Modifier">
+			<h:commandLink value="Modifier" action="#{caMB.updateLinkCategory}">
+			<f:setPropertyActionListener value="#{ca}" target="#{caMB.categorie}"></f:setPropertyActionListener>
+			</h:commandLink>
+		</p:column>
+     <p:column headerText="Recherche">
+			<h:commandLink value="Supprimer" action="#{caMB.getCategory}">
+			<f:setPropertyActionListener value="#{ca.idCategorie}" target="#{caMB.categorie.idCategorie}"></f:setPropertyActionListener>
+			</h:commandLink>
+		</p:column>
+    <p:column headerText="Suppression">
+			<h:commandLink value="Supprimer" action="#{caMB.deleteCategory}">
+			<f:setPropertyActionListener value="#{ca.idCategorie}" target="#{caMB.categorie.idCategorie}"></f:setPropertyActionListener>
+			</h:commandLink>
+		</p:column>
+</p:dataTable>
+
+<p:commandButton value="Ajouter une catégorie" action="#{caMB.addLinkCategory}"  style="margin-right:20px;" />
+</h:form>
+</h:body>
+</html>
