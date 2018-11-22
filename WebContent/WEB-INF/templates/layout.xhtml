@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<h:head>
+	<title></title>
+</h:head>
+
+<h:body>
+
+	<div>
+		<ui:insert name="monHeader">
+			<ui:include src="/templates/header.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+
+	<div>
+		<ui:insert name="monBody">
+			<ui:include src="/templates/body.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+
+	<div>
+		<ui:insert name="monFooter">
+			<ui:include src="/templates/footer.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+
+</h:body>
+</html>

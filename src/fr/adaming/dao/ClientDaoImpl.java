@@ -26,7 +26,7 @@ public class ClientDaoImpl implements IClientDao {
 		try {
 			em.remove(cl);
 			return 1;
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			return 0;
 		}
 
@@ -34,8 +34,13 @@ public class ClientDaoImpl implements IClientDao {
 
 	@Override
 	public int updateClient(Client cl) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			em.merge(cl);
+			return 1;
+		} catch (Exception ex) {
+			return 0;
+		}
+
 	}
 
 	@Override
