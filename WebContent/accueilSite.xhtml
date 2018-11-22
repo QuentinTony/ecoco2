@@ -25,11 +25,11 @@
 			<h:form id="tableCat">
 				<p:dataTable var="cat" value="#{caMB.listeCategories}">
 
-					<p:column headerText="Photo">
-						<p:commandLink action="#{pMB.getProductByCategory}" ajax="false"
+					<p:column headerText="Catégories">
+						<p:commandLink action="#{pMB.getProductbyCategory}" ajax="false"
 							title="#{cat.nomCategorie}">
 							<h:graphicImage value="resources/images/Trash_32px.png" />
-							<f:setPropertyActionListener value="#{pMB.categorie}"
+							<f:setPropertyActionListener value="#{cat}"
 								target="#{pMB.categorie}"></f:setPropertyActionListener>
 						</p:commandLink>
 						<h:outputText value="#{cat.photo}" />

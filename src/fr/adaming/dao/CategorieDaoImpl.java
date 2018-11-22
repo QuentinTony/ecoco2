@@ -10,8 +10,8 @@ import javax.persistence.Query;
 import fr.adaming.model.Categorie;
 
 @Stateless
-public class CategorieDaoImpl implements ICategorieDao{
-	
+public class CategorieDaoImpl implements ICategorieDao {
+
 	@PersistenceContext(unitName = "pu_ecoco")
 	private EntityManager em;
 
@@ -47,12 +47,12 @@ public class CategorieDaoImpl implements ICategorieDao{
 
 	@Override
 	public int updateCategory(Categorie ca) {
-		String req="UPDATE Categorie ca SET p.nomCategorie=:pNomCategorie, p.photo=:pPhoto, p.desccription=:pDescription WHERE p.idProduit=:pIdProduit";
-		Query query=em.createQuery(req);
+		String req = "UPDATE Categorie ca SET ca.nomCategorie=:pNomCategorie, ca.photo=:pPhoto, ca.description=:pDescription WHERE ca.idCategorie=:pIdCategorie";
+		Query query = em.createQuery(req);
 		query.setParameter("pNomCategorie", ca.getNomCategorie());
 		query.setParameter("pPhoto", ca.getPhoto());
 		query.setParameter("pDescription", ca.getDescription());
-		query.setParameter("pIdProduit", ca.getIdCategorie());
+		query.setParameter("pIdCategorie", ca.getIdCategorie());
 		return query.executeUpdate();
 	}
 

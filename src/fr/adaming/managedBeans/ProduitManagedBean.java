@@ -45,6 +45,14 @@ public class ProduitManagedBean implements Serializable {
 	public void setProduit(Produit produit) {
 		this.produit = produit;
 	}
+	
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
 
 	// methode
 	@PostConstruct
@@ -52,6 +60,7 @@ public class ProduitManagedBean implements Serializable {
 		this.maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.client = (Client) maSession.getAttribute("clSession");
 		this.produit = new Produit();
+		this.categorie = new Categorie();
 	}
 
 	public String addLinkProduct() {
