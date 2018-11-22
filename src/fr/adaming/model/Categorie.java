@@ -5,6 +5,9 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
 
@@ -24,7 +27,7 @@ public class Categorie {
 
 	//les attributs ==> les association
 	@OneToMany(mappedBy="categorie")
-	private Produit produit;
+	private List<Produit> produit;
 	
 	
 

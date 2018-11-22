@@ -5,6 +5,9 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,7 +36,7 @@ public class Produit {
 	@JoinColumn(name = "c_id", referencedColumnName = "id_ca")
 	private Categorie categorie;
 	
-	@OneToMany(mappedBy="Produit")
-	private LigneCommande ligneCommande;
+	@OneToMany(mappedBy="produit")
+	private List<LigneCommande> listeLignes;
 
 }
