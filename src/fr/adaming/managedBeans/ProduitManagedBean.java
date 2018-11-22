@@ -1,7 +1,10 @@
 package fr.adaming.managedBeans;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -34,6 +37,16 @@ public class ProduitManagedBean {
 		this.produit = produit;
 	}
 	
+	
+	
+	public Produit getProduit() {
+		return produit;
+	}
+
+	public void setProduit(Produit produit) {
+		this.produit = produit;
+	}
+
 	//methode
 	@PostConstruct
 	public void initClient() {
@@ -45,6 +58,61 @@ public class ProduitManagedBean {
 	
 	public String addLinkProduct() {
 		return "addProduct";
+	}
+	
+	public String addProduct() {
+		Produit pOut =  pService.addProduct(this.produit, this.client);
+		if(pOut!=null) {
+			List<Produit> listeProduits = pService.getProductbyClient(this.client);
+			maSession.setAttribute("listeProduitsSession", listeProduits);
+			return "accueilClient";
+		}else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout n'a pas pu être effectué"));
+			return "addProduct";
+		}
+		
+	}
+	
+	public String deleteProduct() {
+		int verif=pService.deleteProduct(this.produit, this.client);
+		if(verif!=0) {
+			List<Produit> listeProduits = pService.getProductbyClient(this.client);
+			maSession.setAttribute("listeProduitsSession", listeProduits);
+			return "accueilClient";
+		}else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression n'a pas pu être effectuée"));
+			return "accueilClient";
+		}
+		
+	}
+	
+	public String getProduct() {
+		Produit pOut = pService.getProduit(this.produit, this.client);
+		if(pOut!=null) {
+			this.produit=pOut;
+			return "getProduct";
+		}else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche n'a pas pu être effectuée"));
+			return "accueilClient";
+		}
+		
+	}
+	
+	public String updateLinkProduct() {
+		return "updateProduct";
+	}
+	
+	public String updateProduct() {
+		int verif=pService.updateProduit(this.produit, this.client);
+		if(verif!=0) {
+			List<Produit> listeProduits = pService.getProductbyClient(this.client);
+			maSession.setAttribute("listeProduitsSession", listeProduits);
+			return "accueilClient";
+		}else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La modification n'a pas pu être effectuée"));
+			return "updateProduct";
+		}
+		
 	}
 	
 	

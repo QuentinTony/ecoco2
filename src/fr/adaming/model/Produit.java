@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -29,6 +30,7 @@ public class Produit {
 	private double prix;
 	private int quantite;
 	private boolean selectionne;
+	@Lob
 	private byte[] photo;
 
 	// les attributs==> les associations

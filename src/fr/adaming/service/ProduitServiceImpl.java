@@ -1,5 +1,7 @@
 package fr.adaming.service;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
@@ -18,6 +20,29 @@ public class ProduitServiceImpl implements IProduitService {
 	public Produit addProduct(Produit p, Client cl) {
 		p.setClient(cl);
 		return pDao.addProduct(p);
+	}
+
+	@Override
+	public List<Produit> getProductbyClient(Client cl) {
+		return pDao.getProductbyClient(cl);
+	}
+
+	@Override
+	public int deleteProduct(Produit p, Client cl) {
+		p.setClient(cl);
+		return pDao.deleteProduct(p);
+	}
+
+	@Override
+	public Produit getProduit(Produit p, Client cl) {
+		p.setClient(cl);
+		return pDao.getProduit(p);
+	}
+
+	@Override
+	public int updateProduit(Produit p, Client cl) {
+		p.setClient(cl);
+		return pDao.updateProduit(p);
 	}
 
 }
