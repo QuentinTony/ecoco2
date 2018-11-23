@@ -44,13 +44,14 @@
 								target="#{caMB.categorie}"></f:setPropertyActionListener>
 						</h:commandLink>
 					</p:column>
+
 					<p:column headerText="Recherche">
 						<h:commandLink value="Rechercher" action="#{caMB.getCategory}">
-							<f:setPropertyActionListener value="#{ca.idCategorie}"
-								target="#{caMB.categorie.idCategorie}"></f:setPropertyActionListener>
-								<f:setPropertyActionListener value="#{caf.image}" target="#{caMB.file}"></f:setPropertyActionListener>
+							<f:setPropertyActionListener value="#{ca}"
+								target="#{caMB.categorie}"></f:setPropertyActionListener>
 						</h:commandLink>
 					</p:column>
+
 					<p:column headerText="Suppression">
 						<h:commandLink value="Supprimer" action="#{caMB.deleteCategory}">
 							<f:setPropertyActionListener value="#{ca.idCategorie}"

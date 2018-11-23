@@ -39,7 +39,12 @@ public class CategorieServiceImpl implements ICategorieService {
 
 	@Override
 	public int updateCategory(Categorie ca) {
-		return caDao.updateCategory(ca);
+		Categorie caOut = this.getCategory(ca);
+		caOut.setDescription(ca.getDescription());
+		caOut.setNomCategorie(ca.getNomCategorie());
+		caOut.setPhoto(ca.getPhoto());
+		
+		return caDao.updateCategory(caOut);
 	}
 
 }

@@ -11,6 +11,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.primefaces.model.UploadedFile;
 
 import fr.adaming.model.Admin;
@@ -106,13 +107,12 @@ public class CategorieManagedBean implements Serializable {
 		Categorie caOut = caService.getCategory(this.categorie);
 
 		if (caOut != null) {
-			caOut.setPhoto(file.getContents());
 			this.categorie = caOut;
 			return "getCategory";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("La recherche n'a pas pu être effectuée"));
-			return "getCategory";
+			return "accueilAdmin";
 		}
 	}
 
@@ -122,7 +122,16 @@ public class CategorieManagedBean implements Serializable {
 
 	public String updateCategory() {
 
+		if (file != null) {
+			this.categorie.setPhoto(file.getContents());
+		} else {
+			Categorie caOut = caService.getCategory(categorie);
+			categorie.setPhoto(caOut.getPhoto());
+			categorie.setImage(caOut.getImage());
+		}
+
 		int verif = caService.updateCategory(this.categorie);
+		
 		if (verif != 0) {
 			this.listeCategories = caService.getAllCategory();
 			return "accueilAdmin";

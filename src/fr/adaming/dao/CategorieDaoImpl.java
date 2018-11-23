@@ -49,7 +49,7 @@ public class CategorieDaoImpl implements ICategorieDao {
 	@Override
 	public Categorie getCategory(Categorie ca) {
 		Categorie caOut = em.find(Categorie.class, ca.getIdCategorie());
-		ca.setImage("data:image/png;base64," + Base64.encodeBase64String(ca.getPhoto()));
+		caOut.setImage("data:image/png;base64," + Base64.encodeBase64String(ca.getPhoto()));
 		return caOut;
 	}
 

@@ -56,7 +56,7 @@ public class AdminManagedBean {
 
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Identifiants invalides"));
 
-			return "accueilSite";
+			return "loginAdmin";
 
 		}
 
