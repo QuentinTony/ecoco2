@@ -11,52 +11,70 @@
 </h:head>
 
 <h:body>
-	<h:form>
-		<p:dataTable var="p" value="#{clMB.listeProduits}">
-			<p:column headerText="Id">
-				<h:outputText value="#{p.idProduit}" />
-			</p:column>
+	<ui:composition template="/templates/layout.xhtml">
 
-			<p:column headerText="Designation">
-				<h:outputText value="#{p.designation}" />
-			</p:column>
+		<ui:define name="monHeader">
+			<ui:insert>
+				<ui:include src="/templates/header.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
 
-			<p:column headerText="Description">
-				<h:outputText value="#{p.description}" />
-			</p:column>
+		<ui:define name="monBody">
 
-			<p:column headerText="Prix">
-				<h:outputText value="#{p.prix}" />
-			</p:column>
+			<h:form>
+				<p:dataTable var="p" value="#{sessionScope.listeProduitsSession}">
+					<p:column headerText="Id">
+						<h:outputText value="#{p.idProduit}" />
+					</p:column>
 
-			<p:column headerText="Quantité">
-				<h:outputText value="#{p.quantite}" />
-			</p:column>
+					<p:column headerText="Designation">
+						<h:outputText value="#{p.designation}" />
+					</p:column>
 
-			<p:column headerText="Photo">
-				<h:outputText value="#{p.photo}" />
-			</p:column>
+					<p:column headerText="Description">
+						<h:outputText value="#{p.description}" />
+					</p:column>
 
-			<p:column headerText="Suppression">
-				<h:commandLink value="Supprimer" action="#{pMB.deleteProduct}">
-					<f:setPropertyActionListener value="#{p.idProduit}"
-						target="#{pMB.produit.idProduit}"></f:setPropertyActionListener>
-				</h:commandLink>
-			</p:column>
+					<p:column headerText="Prix">
+						<h:outputText value="#{p.prix}" />
+					</p:column>
 
-			<p:column headerText="Modification">
-				<h:commandLink value="Modifier" action="#{pMB.updateLinkProduct}">
-					<f:setPropertyActionListener value="#{p}" target="#{pMB.produit}"></f:setPropertyActionListener>
-				</h:commandLink>
-			</p:column>
+					<p:column headerText="Quantité">
+						<h:outputText value="#{p.quantite}" />
+					</p:column>
+
+					<p:column headerText="Photo">
+						<h:outputText value="#{p.photo}" />
+					</p:column>
+
+					<p:column headerText="Suppression">
+						<h:commandLink value="Supprimer" action="#{pMB.deleteProduct}">
+							<f:setPropertyActionListener value="#{p.idProduit}"
+								target="#{pMB.produit.idProduit}"></f:setPropertyActionListener>
+						</h:commandLink>
+					</p:column>
+
+					<p:column headerText="Modification">
+						<h:commandLink value="Modifier" action="#{pMB.updateLinkProduct}">
+							<f:setPropertyActionListener value="#{p}" target="#{pMB.produit}"></f:setPropertyActionListener>
+						</h:commandLink>
+					</p:column>
 
 
-		</p:dataTable>
+				</p:dataTable>
 
-		<p:commandButton value="Ajouter un produit"
-			action="#{pMB.addLinkProduct}" style="margin-right:20px" />
+				<p:commandButton value="Ajouter un produit"
+					action="#{pMB.addLinkProduct}" style="margin-right:20px" />
+		</ui:define>
 
 
+		<ui:define name="monFooter">
+			<ui:insert>
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+	</ui:composition>
 
 
 	</h:form>

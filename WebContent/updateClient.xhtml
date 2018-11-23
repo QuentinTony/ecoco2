@@ -10,8 +10,18 @@
 	<title>Ajouter un client</title>
 </h:head>
 
-<h:body>
-	<h:form>
+<ui:composition template="/templates/layout.xhtml">
+
+	<ui:define name="monHeader">
+		<ui:insert>
+			<ui:include src="/templates/header.xhtml"></ui:include>
+		</ui:insert>
+	</ui:define>
+
+	<ui:define name="monBody">
+
+		<h:body>
+			<h:form>
 Id : <h:inputHidden value="#{clMB.client.id}" />
 Nom : <h:inputText value="#{clMB.client.nom}" />
 Adresse : <h:inputText value="#{clMB.client.adresse}" />
@@ -20,9 +30,16 @@ Mail : <h:inputHidden value="#{clMB.client.mail" />
 Mdp : <h:inputText value="#{clMB.client.mdp}" />
 
 
-		<p:commandButton value="Modifier un client"
-			action="#{clMB.updateClient}" style="margin-right:20px" />
-	</h:form>
+				<p:commandButton value="Modifier un client"
+					action="#{clMB.updateClient}" style="margin-right:20px" />
+			</h:form>
+	</ui:define>
 
+	<ui:define name="monFooter">
+		<ui:insert>
+			<ui:include src="/templates/footer.xhtml"></ui:include>
+		</ui:insert>
+	</ui:define>
+</ui:composition>
 </h:body>
 </html>

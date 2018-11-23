@@ -30,7 +30,6 @@ public class CategorieManagedBean implements Serializable {
 	HttpSession maSession;
 	private List<Categorie> listeCategories;
 	private UploadedFile file;
-	
 
 	// constructeur vide
 	public CategorieManagedBean() {
@@ -67,7 +66,7 @@ public class CategorieManagedBean implements Serializable {
 	public void init() {
 		this.maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.categorie = new Categorie();
-		this.listeCategories= caService.getAllCategory();
+		this.listeCategories = caService.getAllCategory();
 	}
 
 	public String addLinkCategory() {
@@ -78,9 +77,9 @@ public class CategorieManagedBean implements Serializable {
 		this.categorie.setPhoto(file.getContents());
 		Categorie caOut = caService.addCategory(this.categorie);
 		if (caOut != null) {
-			
+
 			this.listeCategories = caService.getAllCategory();
-		
+
 			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout n'a pas pu être effectué"));
@@ -103,9 +102,11 @@ public class CategorieManagedBean implements Serializable {
 	}
 
 	public String getCategory() {
-		
+
 		Categorie caOut = caService.getCategory(this.categorie);
+
 		if (caOut != null) {
+			caOut.setPhoto(file.getContents());
 			this.categorie = caOut;
 			return "getCategory";
 		} else {
@@ -114,13 +115,13 @@ public class CategorieManagedBean implements Serializable {
 			return "getCategory";
 		}
 	}
-	
+
 	public String updateLinkCategory() {
 		return "updateCategory";
 	}
-	
+
 	public String updateCategory() {
-	
+
 		int verif = caService.updateCategory(this.categorie);
 		if (verif != 0) {
 			this.listeCategories = caService.getAllCategory();
@@ -131,6 +132,5 @@ public class CategorieManagedBean implements Serializable {
 			return "updateCategory";
 		}
 	}
-	
-	
+
 }

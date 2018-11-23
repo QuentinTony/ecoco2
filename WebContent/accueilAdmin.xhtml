@@ -48,6 +48,7 @@
 						<h:commandLink value="Rechercher" action="#{caMB.getCategory}">
 							<f:setPropertyActionListener value="#{ca.idCategorie}"
 								target="#{caMB.categorie.idCategorie}"></f:setPropertyActionListener>
+								<f:setPropertyActionListener value="#{caf.image}" target="#{caMB.file}"></f:setPropertyActionListener>
 						</h:commandLink>
 					</p:column>
 					<p:column headerText="Suppression">

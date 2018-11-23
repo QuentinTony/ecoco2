@@ -11,7 +11,7 @@
 </h:head>
 
 <h:body>
-<ui:composition template="/templates/layout.xhtml">
+	<ui:composition template="/templates/layout.xhtml">
 
 		<ui:define name="monHeader">
 			<ui:insert>
@@ -20,20 +20,21 @@
 		</ui:define>
 
 		<ui:define name="monBody">
-	<h:form enctype="multipart/form-data">
-	<p:growl id="growl" life="3000" autoUpdate="true" showDetail="true"/>
-<p:fieldset legend="Ajouter une catégorie">
+			<h:form enctype="multipart/form-data">
+				<p:growl id="growl" life="3000" autoUpdate="true" showDetail="true" />
+				<p:fieldset legend="Ajouter une catégorie">
 Nom : <h:inputText value="#{caMB.categorie.nomCategorie}" />
 description : <h:inputText value="#{caMB.categorie.description}" />
      
 photo :    <p:fileUpload id="image" value="#{caMB.file}" mode="simple"
-			skinSimple="true" />
-</p:fieldset>
+						skinSimple="true" />
+				</p:fieldset>
 
-		<p:commandButton value="Ajouter une catégorie"
-			action="#{caMB.addCategory}" style="margin-right:20px" update="growl" ajax="false" />
-	</h:form>
-	</ui:define>
+				<p:commandButton value="Ajouter une catégorie"
+					action="#{caMB.addCategory}" style="margin-right:20px"
+					update="growl" ajax="false" />
+			</h:form>
+		</ui:define>
 		<ui:define name="monFooter">
 			<ui:insert>
 				<ui:include src="/templates/footer.xhtml"></ui:include>
@@ -41,7 +42,7 @@ photo :    <p:fileUpload id="image" value="#{caMB.file}" mode="simple"
 		</ui:define>
 
 	</ui:composition>
-	
+
 </h:body>
 
 </html>

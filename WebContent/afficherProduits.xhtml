@@ -63,7 +63,11 @@
 					</p:column>
 
 					<p:column headerText="Nom">
-						<h:outputText value="#{p.designation}" />
+						<p:commandLink action="#{pMB.afficherProduit}" ajax="false"
+							 value="#{p.designation}">
+							<f:setPropertyActionListener value="#{p}"
+								target="#{pMB.produit}"></f:setPropertyActionListener>
+						</p:commandLink>
 					</p:column>
 
 					<p:column headerText="Description">
@@ -83,17 +87,17 @@
 					</p:column>
 
 					<p:column>
-						
-							<h:commandButton image="resources/images/addProduit.png"
-								action="#{paMB.addToPanier}">
-								<f:setPropertyActionListener value="#{p}"
-									target="#{paMB.produit}"></f:setPropertyActionListener>
-							</h:commandButton>
 
-							<p:spinner id="basic" value="#{paMB.quantite}"
-								max="#{p.quantite}" min="0" size="1">
-							</p:spinner>
-						
+						<h:commandButton image="resources/images/addProduit.png"
+							action="#{paMB.addToPanier}">
+							<f:setPropertyActionListener value="#{p}"
+								target="#{paMB.produit}"></f:setPropertyActionListener>
+						</h:commandButton>
+
+						<p:spinner id="basic" value="#{paMB.quantite}" max="#{p.quantite}"
+							min="0" size="1">
+						</p:spinner>
+
 					</p:column>
 
 				</p:dataTable>

@@ -12,12 +12,30 @@
 
 <h:body>
 
-	<h:form>
+
+	<ui:composition template="/templates/layout.xhtml">
+
+		<ui:define name="monHeader">
+			<ui:insert>
+				<ui:include src="/templates/header.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+		<ui:define name="monBody">
+			<h:form>
 Mail : <h:inputText value="#{aMB.admin.mail}" />
 Mot de passe : <h:inputText value="#{aMB.admin.mdp}" />
 
-		<h:commandButton value="Se connecter" action="#{aMB.isExist}"/>
-	</h:form>
+				<h:commandButton value="Se connecter" action="#{aMB.isExist}" />
+			</h:form>
 
+		</ui:define>
+
+		<ui:define name="monFooter">
+			<ui:insert>
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

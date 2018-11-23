@@ -45,7 +45,7 @@ public class ProduitManagedBean implements Serializable {
 	public void setProduit(Produit produit) {
 		this.produit = produit;
 	}
-	
+
 	public Categorie getCategorie() {
 		return categorie;
 	}
@@ -63,6 +63,13 @@ public class ProduitManagedBean implements Serializable {
 		this.categorie = new Categorie();
 	}
 
+	public String afficherProduit() {
+		
+		maSession.setAttribute("prSession", produit);
+		
+		return "afficherOneProduit";
+	}
+	
 	public String addLinkProduct() {
 		return "addProduct";
 	}
@@ -112,6 +119,7 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	public String updateProduct() {
+
 		int verif = pService.updateProduit(this.produit, this.client);
 		if (verif != 0) {
 			List<Produit> listeProduits = pService.getProductbyClient(this.client);
@@ -127,14 +135,14 @@ public class ProduitManagedBean implements Serializable {
 
 	public String getProductbyCategory() {
 		List<Produit> listeProduits = pService.getProductbyCategory(this.categorie);
-		if(listeProduits!=null) {
+		if (listeProduits != null) {
 			maSession.setAttribute("listeProduitsSession", listeProduits);
 			return "afficherProduits";
-		}else {
+		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("La recherche n'a pas pu être effectuée"));
 			return "accueilSite";
-			
+
 		}
 	}
 

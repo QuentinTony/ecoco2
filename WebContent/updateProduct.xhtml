@@ -11,18 +11,41 @@
 </h:head>
 
 <h:body>
-<h:form >
+
+	<ui:composition template="/templates/layout.xhtml">
+
+		<ui:define name="monHeader">
+			<ui:insert>
+				<ui:include src="/templates/header.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+		<ui:define name="monBody">
+
+			<h:form>
+				<p:inputText value="#{pMB.produit.idProduit}" />
 designation : <h:inputText value="#{pMB.produit.designation}" />
 description : <h:inputText value="#{pMB.produit.description}" />
 prix :<p:inputText value="#{pMB.produit.prix}" />
 quantité : <p:inputText value="#{pMB.produit.quantite}" />
 
 photo : 
-    <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/>
+    <p:fileUpload value="#{fileUploadView.file}" mode="simple"
+					skinSimple="true" />
 
 
-<p:commandButton value="Modifier un produit" action="#{pMB.updateProduct}"  style="margin-right:20px;>
-</h:form>
+				<p:commandButton value="Modifier un produit"
+					action="#{pMB.updateProduct}" style="margin-right:20px;" />
+			</h:form>
+
+		</ui:define>
+
+		<ui:define name="monFooter">
+			<ui:insert>
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+	</ui:composition>
 </h:body>
 
 </html>
