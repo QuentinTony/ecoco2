@@ -2,7 +2,9 @@ package fr.adaming.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -22,7 +24,12 @@ public class Categorie {
 	@Column(name = "id_ca")
 	private long idCategorie;
 	private String nomCategorie;
+	@Lob
 	private byte[] photo;
+	@Transient
+	private String image;
+	
+	
 	private String description;
 
 	// les attributs ==> les association
@@ -37,21 +44,19 @@ public class Categorie {
 	}
 
 	// -id
-	public Categorie(String nomCategorie, byte[] photo, String description, List<Produit> listeProduits) {
+	public Categorie(String nomCategorie,  String description, List<Produit> listeProduits) {
 		super();
 		this.nomCategorie = nomCategorie;
-		this.photo = photo;
 		this.description = description;
 		this.listeProduits = listeProduits;
 	}
 
 	// +id
-	public Categorie(long idCategorie, String nomCategorie, byte[] photo, String description,
+	public Categorie(long idCategorie, String nomCategorie, String description,
 			List<Produit> listeProduits) {
 		super();
 		this.idCategorie = idCategorie;
 		this.nomCategorie = nomCategorie;
-		this.photo = photo;
 		this.description = description;
 		this.listeProduits = listeProduits;
 	}
@@ -95,6 +100,14 @@ public class Categorie {
 
 	public void setListeProduits(List<Produit> listeProduits) {
 		this.listeProduits = listeProduits;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	// ToString

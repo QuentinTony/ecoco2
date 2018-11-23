@@ -43,20 +43,21 @@
 
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Prix total du panier : " for="prixtotal" />
-				<h:outputText id="prixtotal" value="#{sessionScope.paSession.prixTotal}" />
+				<h:outputText id="prixtotal"
+					value="#{sessionScope.paSession.prixTotal}" />
 			</h:panelGrid>
 
 			<h:form id="tableCat">
-				<p:dataTable var="cat" value="#{caMB.listeCategories}">
+				<p:dataTable id="dataTableCategories" var="cat"
+					value="#{caMB.listeCategories}">
 
 					<p:column headerText="Catégories">
 						<p:commandLink action="#{pMB.getProductbyCategory}" ajax="false"
 							title="#{cat.nomCategorie}">
-							<h:graphicImage value="resources/images/Trash_32px.png" />
+							<h:graphicImage value="#{cat.image}" styleClass="image2" />
 							<f:setPropertyActionListener value="#{cat}"
 								target="#{pMB.categorie}"></f:setPropertyActionListener>
 						</p:commandLink>
-						<h:outputText value="#{cat.photo}" />
 					</p:column>
 
 				</p:dataTable>

@@ -39,7 +39,6 @@ public class CategorieServiceImpl implements ICategorieService {
 
 	@Override
 	public int updateCategory(Categorie ca) {
-		
 		return caDao.updateCategory(ca);
 	}
 

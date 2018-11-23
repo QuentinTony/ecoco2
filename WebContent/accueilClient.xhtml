@@ -12,7 +12,7 @@
 
 <h:body>
 	<h:form>
-		<p:dataTable var="p" value="#{sessionScope.listeProduits}">
+		<p:dataTable var="p" value="#{clMB.listeProduits}">
 			<p:column headerText="Id">
 				<h:outputText value="#{p.idProduit}" />
 			</p:column>
@@ -30,7 +30,7 @@
 			</p:column>
 
 			<p:column headerText="Quantité">
-				<h:outputText value="#p.quantite}" />
+				<h:outputText value="#{p.quantite}" />
 			</p:column>
 
 			<p:column headerText="Photo">
@@ -39,7 +39,7 @@
 
 			<p:column headerText="Suppression">
 				<h:commandLink value="Supprimer" action="#{pMB.deleteProduct}">
-					<f:setPropertyActionListener value="#{p.id}"
+					<f:setPropertyActionListener value="#{p.idProduit}"
 						target="#{pMB.produit.idProduit}"></f:setPropertyActionListener>
 				</h:commandLink>
 			</p:column>

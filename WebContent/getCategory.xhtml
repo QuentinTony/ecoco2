@@ -11,11 +11,51 @@
 </h:head>
 
 <h:body>
+	<ui:composition template="/templates/layout.xhtml">
 
-Id : <h:inputHidden value="#{caMB.categorie.idCategorie}" />
-Nom : <h:inputText value="#{caMB.categorie.nomCategorie}" />
-description : <h:inputText value="#{caMB.categorie.description}" />
-photo : 
+		<ui:define name="monHeader">
+			<ui:insert>
+				<ui:include src="/templates/header.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+		<ui:define name="monBody">
+
+			<h:form enctype="multipart/form-data">
+				<p:growl id="growl" life="3000" autoUpdate="true" showDetail="true" />
+
+				<p:fieldset legend="Description de l'article">
+
+					<p:dataTable  var="ca"
+						value="#{caMB.categorie}">
+						<p:column headerText="Id">
+							<h:outputText value="#{ca.idCategorie}" />
+						</p:column>
+
+						<p:column headerText="Nom">
+							<h:outputText value="#{ca.nomCategorie}" />
+						</p:column>
+
+						<p:column headerText="Description">
+							<h:outputText value="#{ca.description}" />
+						</p:column>
+
+						<p:column headerText="Photo">
+							<h:graphicImage value="#{ca.image}" styleClass="image" />
+						</p:column>
+
+
+					</p:dataTable>
+				</p:fieldset>
+			</h:form>
+		</ui:define>
+		<ui:define name="monFooter">
+			<ui:insert>
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+	</ui:composition>
 
 
 

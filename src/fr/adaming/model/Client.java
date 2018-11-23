@@ -20,8 +20,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "clients")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="admin")
-@DiscriminatorValue(value="non")
+@DiscriminatorColumn(name = "admin")
+@DiscriminatorValue(value = "non")
 public class Client implements Serializable {
 
 	// attributs
@@ -36,10 +36,10 @@ public class Client implements Serializable {
 	protected String tel;
 
 	// association onetomany avec commande
-	@OneToMany(mappedBy = "client", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY) 
+	@OneToMany(mappedBy = "client", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	protected List<Commande> listeCommandes;
 
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	protected List<Produit> listeProduits;
 
 	// constructeurs

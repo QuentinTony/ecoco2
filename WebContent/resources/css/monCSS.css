@@ -13,3 +13,13 @@
 	background-color: darkblue;
 	height: 120px;
 }
+
+.image{
+	width : 60px;
+	border-radius:10%;
+}
+
+.image2{
+	width : 150px;
+	border-radius:10%;
+}

@@ -8,9 +8,10 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+
+import org.primefaces.model.UploadedFile;
 
 import fr.adaming.model.Admin;
 import fr.adaming.model.Categorie;
@@ -28,6 +29,8 @@ public class CategorieManagedBean implements Serializable {
 	private Admin admin;
 	HttpSession maSession;
 	private List<Categorie> listeCategories;
+	private UploadedFile file;
+	
 
 	// constructeur vide
 	public CategorieManagedBean() {
@@ -51,6 +54,14 @@ public class CategorieManagedBean implements Serializable {
 		this.listeCategories = listeCategories;
 	}
 
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+
 	// les méthodes
 	@PostConstruct
 	public void init() {
@@ -64,6 +75,7 @@ public class CategorieManagedBean implements Serializable {
 	}
 
 	public String addCategory() {
+		this.categorie.setPhoto(file.getContents());
 		Categorie caOut = caService.addCategory(this.categorie);
 		if (caOut != null) {
 			
@@ -91,6 +103,7 @@ public class CategorieManagedBean implements Serializable {
 	}
 
 	public String getCategory() {
+		
 		Categorie caOut = caService.getCategory(this.categorie);
 		if (caOut != null) {
 			this.categorie = caOut;
@@ -107,6 +120,7 @@ public class CategorieManagedBean implements Serializable {
 	}
 	
 	public String updateCategory() {
+	
 		int verif = caService.updateCategory(this.categorie);
 		if (verif != 0) {
 			this.listeCategories = caService.getAllCategory();

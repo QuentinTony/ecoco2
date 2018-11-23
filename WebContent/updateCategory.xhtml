@@ -9,18 +9,41 @@
 <h:head>
 	<title>Ajouter une catégorie</title>
 </h:head>
-
 <h:body>
-<h:form>
-Id : <h:inputHidden value="#{caMB.categorie.idCategorie}"/>
+<ui:composition template="/templates/layout.xhtml">
+
+		<ui:define name="monHeader">
+			<ui:insert>
+				<ui:include src="/templates/header.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+		<ui:define name="monBody">
+
+	<h:form enctype="multipart/form-data">
+		<p:growl id="growl" life="3000" autoUpdate="true" showDetail="true" />
+
+		<p:fieldset legend="Modifier une catégorie">
+Id : <h:inputHidden value="#{caMB.categorie.idCategorie}" />
 Nom : <h:inputText value="#{caMB.categorie.nomCategorie}" />
 description : <h:inputText value="#{caMB.categorie.description}" />
-photo : <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/>
+photo : <p:fileUpload id="image" value="#{caMB.file}" mode="simple"
+				skinSimple="true" />
 
 
+		</p:fieldset>
+		<p:commandButton value="Modifier une catégorie"
+			action="#{caMB.updateCategory}" style="margin-right:20px" />
+	</h:form>
+	</ui:define>
+		<ui:define name="monFooter">
+			<ui:insert>
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
 
-<p:commandButton value="Modifier une catégorie" action="#{caMB.updateCategory}"  style="margin-right:20px"/>
-</h:form>
+	</ui:composition>
+	
 
 </h:body>
 

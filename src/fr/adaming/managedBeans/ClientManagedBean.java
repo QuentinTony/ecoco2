@@ -70,7 +70,7 @@ public class ClientManagedBean implements Serializable {
 	}
 
 	public String isExist() {
-		Client clOut = clService.isExist(client);
+		Client clOut = clService.isExist(this.client);
 		if (clOut != null) {
 			this.listeProduits = pService.getProductbyClient(clOut);
 			maSession.setAttribute("listeProduitsSession", listeProduits);
