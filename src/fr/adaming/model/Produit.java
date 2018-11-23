@@ -61,7 +61,7 @@ public class Produit {
 		this.selectionne = selectionne;
 		this.photo = photo;
 	}
-
+ 
 	// +id
 	public Produit(long idProduit, String designation, String description, double prix, int quantite,
 			boolean selectionne, byte[] photo) {
