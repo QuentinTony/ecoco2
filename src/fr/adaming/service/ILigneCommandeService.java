@@ -9,7 +9,7 @@ import fr.adaming.model.LigneCommande;
 @Local
 public interface ILigneCommandeService {
 
-	public LigneCommande addLigneCommande(LigneCommande lc, Commande co, Client cl);
+	public LigneCommande addLigneCommande(LigneCommande lc, Commande co);
 
 	public int deleteLigneCommande(LigneCommande lc, Commande co, Client cl);
 

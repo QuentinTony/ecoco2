@@ -16,9 +16,9 @@ public class LigneCommandeServiceImpl implements ILigneCommandeService{
 	private ILigneCommandeDao lcDao;
 	
 	@Override
-	public LigneCommande addLigneCommande(LigneCommande lc, Commande co, Client cl) {
-
-		return null;
+	public LigneCommande addLigneCommande(LigneCommande lc, Commande co) {
+		lc.setCommande(co);
+		return lcDao.addLigneCommande(lc);
 	}
 
 	@Override

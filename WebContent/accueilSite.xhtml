@@ -39,14 +39,17 @@
 					</p:column>
 
 				</p:dataTable>
+
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Prix total du panier : " for="prixtotal" />
+					<h:outputText id="prixtotal"
+						value="#{sessionScope.paSession.prixTotal}" />
+					<h:commandButton value="Passer la commande"
+						action="#{coMB.passerCommande1}" />
+
+				</h:panelGrid>
+
 			</h:form>
-
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Prix total du panier : " for="prixtotal" />
-				<h:outputText id="prixtotal"
-					value="#{sessionScope.paSession.prixTotal}" />
-			</h:panelGrid>
-
 			<h:form id="tableCat">
 				<p:dataGrid id="dataTableCategories" var="cat"
 					value="#{caMB.listeCategories}" columns="3" layout="grid">

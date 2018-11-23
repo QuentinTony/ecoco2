@@ -25,9 +25,7 @@ public class CommandeServiceImpl implements ICommandeService {
 
 		co.setClient(cl);
 
-		em.persist(co);
-
-		return co;
+		return coDao.addCommande(co);
 	}
 
 	@Override

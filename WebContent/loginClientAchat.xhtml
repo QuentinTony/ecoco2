@@ -12,7 +12,6 @@
 
 <h:body>
 
-
 	<ui:composition template="/templates/layout.xhtml">
 
 		<ui:define name="monHeader">
@@ -22,28 +21,32 @@
 		</ui:define>
 
 		<ui:define name="monBody">
-			<h:form>
-				<div class="formStyle">
+
+			<div class="formStyle">
+				<h:form>
 					<h:panelGrid columns="1" cellspacing="10">
 						<p:outputLabel value="Mail" />
-						<p:inputText id="input1" value="#{aMB.admin.mail}" />
-
+						<p:inputText value="#{coMB.client.mail}" />
 						<p:outputLabel value="Mot de passe" />
-						<p:inputText id="input2" value="#{aMB.admin.mdp}" />
+						<p:inputText value="#{coMB.client.mdp}" />
 
-						<p:commandButton value="Se connecter" action="#{aMB.isExist}" ajax="false"/>
-
+						<p:commandButton value="S'identifier"
+							action="#{coMB.passerCommande}" update="@all" />
 					</h:panelGrid>
-				</div>
-			</h:form>
 
+				</h:form>
+			</div>
 		</ui:define>
+
 
 		<ui:define name="monFooter">
 			<ui:insert>
 				<ui:include src="/templates/footer.xhtml"></ui:include>
 			</ui:insert>
 		</ui:define>
+
 	</ui:composition>
+
 </h:body>
+
 </html>

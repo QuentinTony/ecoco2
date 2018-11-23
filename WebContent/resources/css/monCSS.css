@@ -23,3 +23,11 @@
 	width : 150px;
 	border-radius:10%;
 }
+
+.formStyle{
+	
+	padding:20px;
+	width:250px;
+	margin-left: auto;
+	margin-right: auto;
+}

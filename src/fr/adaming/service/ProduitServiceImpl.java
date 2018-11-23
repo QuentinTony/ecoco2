@@ -54,13 +54,24 @@ public class ProduitServiceImpl implements IProduitService {
 	}
 
 	@Override
+	public int updateProduit(Produit p) {
+		Produit pOut = this.getProduit(p);
+		pOut.setDescription(p.getDescription());
+		pOut.setDesignation(p.getDesignation());
+		pOut.setPrix(p.getPrix());
+		pOut.setPhoto(p.getPhoto());
+		pOut.setQuantite(p.getQuantite());
+		return pDao.updateProduit(pOut);
+	}
+
+	@Override
 	public List<Produit> getProductbyCategory(Categorie ca) {
 		return pDao.getProductbyCategory(ca);
 	}
 
 	@Override
 	public Produit getProduit(Produit p) {
-		
+
 		return pDao.getProduit(p);
 	}
 

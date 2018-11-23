@@ -20,6 +20,10 @@
 
 		<ui:define name="monBody">
 			<h:form>
+				<p:commandButton value="Ajouter une catégorie"
+					action="#{caMB.addLinkCategory}" style="margin-right:20px;" />
+					<br/>
+					<br/>
 				<p:dataTable var="ca" value="#{caMB.listeCategories}">
 					<p:column headerText="Id">
 						<h:outputText value="#{ca.idCategorie}" />
@@ -38,30 +42,30 @@
 					</p:column>
 
 					<p:column headerText="Modifier">
-						<h:commandLink value="Modifier"
-							action="#{caMB.updateLinkCategory}">
+						<h:commandLink action="#{caMB.updateLinkCategory}"
+							title="modifier la catégorie">
+							<h:graphicImage value="resources/images/edit.png" />
 							<f:setPropertyActionListener value="#{ca}"
 								target="#{caMB.categorie}"></f:setPropertyActionListener>
 						</h:commandLink>
-					</p:column>
 
-					<p:column headerText="Recherche">
-						<h:commandLink value="Rechercher" action="#{caMB.getCategory}">
+						<h:commandLink action="#{caMB.getCategory}"
+							title="afficher la catégorie">
+							<h:graphicImage value="resources/images/Search_26px.png" />
 							<f:setPropertyActionListener value="#{ca}"
 								target="#{caMB.categorie}"></f:setPropertyActionListener>
 						</h:commandLink>
-					</p:column>
 
-					<p:column headerText="Suppression">
-						<h:commandLink value="Supprimer" action="#{caMB.deleteCategory}">
+						<h:commandLink action="#{caMB.deleteCategory}"
+							title="supprimer la catégorie">
+							<h:graphicImage value="resources/images/Trash Can_26px.png" />
 							<f:setPropertyActionListener value="#{ca.idCategorie}"
 								target="#{caMB.categorie.idCategorie}"></f:setPropertyActionListener>
 						</h:commandLink>
 					</p:column>
+
 				</p:dataTable>
 
-				<p:commandButton value="Ajouter une catégorie"
-					action="#{caMB.addLinkCategory}" style="margin-right:20px;" />
 			</h:form>
 
 		</ui:define>

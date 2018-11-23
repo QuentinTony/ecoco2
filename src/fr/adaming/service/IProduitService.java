@@ -14,18 +14,17 @@ public interface IProduitService {
 	public Produit addProduct(Produit p, Client cl, Categorie cat);
 
 	public List<Produit> getProductbyClient(Client cl);
-	
+
 	public int deleteProduct(Produit p, Client cl);
-	
+
 	public Produit getProduit(Produit p, Client cl);
-	
+
 	public Produit getProduit(Produit p);
-	
+
 	public int updateProduit(Produit p, Client cl);
-	
-	public List<Produit> getProductbyCategory (Categorie ca);
 
+	public int updateProduit(Produit p);
 
-
+	public List<Produit> getProductbyCategory(Categorie ca);
 
 }
