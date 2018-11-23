@@ -53,7 +53,7 @@ public class Produit {
 	// -id
 	public Produit(String designation, String description, double prix, int quantite, boolean selectionne,
 			byte[] photo) {
-		super();
+		super(); 
 		this.designation = designation;
 		this.description = description;
 		this.prix = prix;
