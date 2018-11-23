@@ -37,7 +37,7 @@ public class Produit {
 	@ManyToOne
 	@JoinColumn(name = "c_id", referencedColumnName = "id_ca")
 	private Categorie categorie;
-
+ 
 	@OneToMany(mappedBy = "produit")
 	private List<LigneCommande> listeLignes;
 
@@ -161,7 +161,7 @@ public class Produit {
 	public String toString() {
 		return "Produit [idProduit=" + idProduit + ", designation=" + designation + ", description=" + description
 				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo="
-				+ Arrays.toString(photo) + ", categorie=" + categorie + ", listeLignes=" + listeLignes + "]";
+				+ Arrays.toString(photo) + "]";
 	}
 
 }

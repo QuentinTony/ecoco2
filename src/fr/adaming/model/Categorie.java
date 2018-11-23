@@ -29,7 +29,6 @@ public class Categorie {
 	@Transient
 	private String image;
 	
-	
 	private String description;
 
 	// les attributs ==> les association
@@ -44,21 +43,18 @@ public class Categorie {
 	}
 
 	// -id
-	public Categorie(String nomCategorie,  String description, List<Produit> listeProduits) {
+	public Categorie(String nomCategorie,  String description) {
 		super();
 		this.nomCategorie = nomCategorie;
 		this.description = description;
-		this.listeProduits = listeProduits;
 	}
 
 	// +id
-	public Categorie(long idCategorie, String nomCategorie, String description,
-			List<Produit> listeProduits) {
+	public Categorie(long idCategorie, String nomCategorie, String description) {
 		super();
 		this.idCategorie = idCategorie;
 		this.nomCategorie = nomCategorie;
 		this.description = description;
-		this.listeProduits = listeProduits;
 	}
 
 	// getters et setters
@@ -114,7 +110,7 @@ public class Categorie {
 	@Override
 	public String toString() {
 		return "Categorie [idCategorie=" + idCategorie + ", nomCategorie=" + nomCategorie + ", photo="
-				+ Arrays.toString(photo) + ", description=" + description + ", listeProduits=" + listeProduits + "]";
+				+ Arrays.toString(photo) + ", description=" + description + "]";
 	}
 
 }
