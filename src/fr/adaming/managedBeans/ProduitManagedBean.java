@@ -131,6 +131,7 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	public String updateProduct() {
+		this.produit.setPhoto(file.getContents());
 
 		int verif = pService.updateProduit(this.produit, this.client);
 		if (verif != 0) {

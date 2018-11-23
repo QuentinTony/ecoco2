@@ -48,10 +48,12 @@
 			</h:panelGrid>
 
 			<h:form id="tableCat">
-				<p:dataTable id="dataTableCategories" var="cat"
-					value="#{caMB.listeCategories}">
+				<p:dataGrid id="dataTableCategories" var="cat"
+					value="#{caMB.listeCategories}" columns="3" layout="grid">
+					<f:facet name="header">
+Catégories        </f:facet>
 
-					<p:column headerText="Catégories">
+					<p:column>
 						<p:commandLink action="#{pMB.getProductbyCategory}" ajax="false"
 							title="#{cat.nomCategorie}">
 							<h:graphicImage value="#{cat.image}" styleClass="image2" />
@@ -60,7 +62,7 @@
 						</p:commandLink>
 					</p:column>
 
-				</p:dataTable>
+				</p:dataGrid>
 			</h:form>
 
 

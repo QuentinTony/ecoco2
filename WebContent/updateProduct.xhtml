@@ -22,21 +22,26 @@
 
 		<ui:define name="monBody">
 
-			<h:form>
-				<p:inputText value="#{pMB.produit.idProduit}" />
+			<h:form enctype="multipart/form-data">
+				<p:growl id="growl" life="3000" autoUpdate="true" showDetail="true" />
+				<p:fieldset legend="Modifier un produit">
+					<h:inputHidden value="#{pMB.produit.idProduit}" />
 designation : <h:inputText value="#{pMB.produit.designation}" />
 description : <h:inputText value="#{pMB.produit.description}" />
 prix :<p:inputText value="#{pMB.produit.prix}" />
 quantité : <p:inputText value="#{pMB.produit.quantite}" />
 
-photo : 
-    <p:fileUpload value="#{fileUploadView.file}" mode="simple"
-					skinSimple="true" />
+photo : <h:graphicImage value="#{p.image}" styleClass="image" />
 
 
-				<p:commandButton value="Modifier un produit"
-					action="#{pMB.updateProduct}" style="margin-right:20px;" />
+<p:fileUpload id="image" value="#{pMB.file}" mode="simple"
+						skinSimple="true" />
+					<p:commandButton value="Modifier un produit"
+						action="#{pMB.updateProduct}" style="margin-right:20px"
+						ajax="false" update="growl" />
+				</p:fieldset>
 			</h:form>
+
 
 		</ui:define>
 
