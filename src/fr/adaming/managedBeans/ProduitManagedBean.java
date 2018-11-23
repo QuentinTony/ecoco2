@@ -10,6 +10,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.model.UploadedFile;
+
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
 import fr.adaming.model.Produit;
@@ -26,6 +28,7 @@ public class ProduitManagedBean implements Serializable {
 	private Client client;
 	private Categorie categorie;
 	HttpSession maSession;
+	private UploadedFile file;
 
 	// constructeur vide
 	public ProduitManagedBean() {
@@ -54,6 +57,14 @@ public class ProduitManagedBean implements Serializable {
 		this.categorie = categorie;
 	}
 
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+
 	// methode
 	@PostConstruct
 	public void initClient() {
@@ -75,6 +86,7 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	public String addProduct() {
+		this.produit.setPhoto(file.getContents());
 		Produit pOut = pService.addProduct(this.produit, this.client);
 		if (pOut != null) {
 			List<Produit> listeProduits = pService.getProductbyClient(this.client);

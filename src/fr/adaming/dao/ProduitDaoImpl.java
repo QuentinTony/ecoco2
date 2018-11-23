@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.commons.codec.binary.Base64;
+
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
 import fr.adaming.model.Produit;
@@ -29,7 +31,11 @@ public class ProduitDaoImpl implements IProduitDao {
 		String req = "SELECT p FROM Produit p WHERE p.client.id=:pIdcl";
 		Query query = em.createQuery(req);
 		query.setParameter("pIdcl", cl.getId());
-		return query.getResultList();
+		List<Produit> liste = query.getResultList();
+		for(Produit p : liste){
+			p.setImage("data:image/png;base64,"+ Base64.encodeBase64String(p.getPhoto()));
+	}
+	return liste;
 	}
 
 	@Override
@@ -45,7 +51,9 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Override
 	public Produit getProduit(Produit p) {
-		return em.find(Produit.class, p.getIdProduit());
+		Produit pOut =em.find(Produit.class, p.getIdProduit());
+		pOut.setImage("data:image/png;base64,"+ Base64.encodeBase64String(p.getPhoto()));
+		return pOut;
 	}
 
 	@Override

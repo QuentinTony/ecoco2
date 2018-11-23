@@ -2,6 +2,7 @@ package fr.adaming.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +33,8 @@ public class Produit {
 	private boolean selectionne;
 	@Lob
 	private byte[] photo;
+	@Transient
+	private String image;
 
 	// les attributs==> les associations
 	@ManyToOne
@@ -51,20 +54,19 @@ public class Produit {
 	}
 
 	// -id
-	public Produit(String designation, String description, double prix, int quantite, boolean selectionne,
-			byte[] photo) {
+	public Produit(String designation, String description, double prix, int quantite, boolean selectionne) {
 		super(); 
 		this.designation = designation;
 		this.description = description;
 		this.prix = prix;
 		this.quantite = quantite;
 		this.selectionne = selectionne;
-		this.photo = photo;
+
 	}
  
 	// +id
 	public Produit(long idProduit, String designation, String description, double prix, int quantite,
-			boolean selectionne, byte[] photo) {
+			boolean selectionne) {
 		super();
 		this.idProduit = idProduit;
 		this.designation = designation;
@@ -72,7 +74,7 @@ public class Produit {
 		this.prix = prix;
 		this.quantite = quantite;
 		this.selectionne = selectionne;
-		this.photo = photo;
+
 	}
 
 	// getters et setters
@@ -154,6 +156,14 @@ public class Produit {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	// ToString
