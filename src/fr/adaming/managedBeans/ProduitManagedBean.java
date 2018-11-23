@@ -87,7 +87,7 @@ public class ProduitManagedBean implements Serializable {
 
 	public String addProduct() {
 		this.produit.setPhoto(file.getContents());
-		Produit pOut = pService.addProduct(this.produit, this.client);
+		Produit pOut = pService.addProduct(this.produit, this.client, this.categorie);
 		if (pOut != null) {
 			List<Produit> listeProduits = pService.getProductbyClient(this.client);
 			maSession.setAttribute("listeProduitsSession", listeProduits);

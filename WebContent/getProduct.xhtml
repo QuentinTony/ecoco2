@@ -22,7 +22,7 @@
 		<ui:define name="monBody">
 
 			<h:form>
-				<p:dataTable var="p" value="#{pMB.product}">
+				<p:dataTable id="dataTableCategories" var="p" value="#{pMB.product}">
 					<p:column headerText="Id">
 						<h:outputText value="#{p.id}" />
 					</p:column>
@@ -44,12 +44,12 @@
 					</p:column>
 
 					<p:column headerText="Photo">
-						<h:outputText value="#{p.photo}" />
+						<h:graphicImage value="#{p.image}" styleClass="image" />
 					</p:column>
 				</p:dataTable>
 
 				<p:commandButton value="Ajouter un produit"
-					action="#{pMB.addLinkProduct}" style="margin-right:20px;">
+					action="#{pMB.addLinkProduct}" style="margin-right:20px;"/>
 			</h:form>
 		</ui:define>
 

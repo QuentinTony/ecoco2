@@ -52,7 +52,7 @@
 			</h:panelGrid>
 
 			<h:form id="tablePdt">
-				<p:dataTable var="p" value="#{sessionScope.listeProduitsSession}">
+				<p:dataTable id="dataTableCategories" var="p" value="#{sessionScope.listeProduitsSession}">
 
 					<p:column>
 						<p:selectBooleanCheckbox value="#{p.selectionne}" />
@@ -83,7 +83,7 @@
 					</p:column>
 
 					<p:column headerText="Photo">
-						<h:outputText value="#{p.photo}" />
+						<h:outputText value="#{p.image}" />
 					</p:column>
 
 					<p:column>

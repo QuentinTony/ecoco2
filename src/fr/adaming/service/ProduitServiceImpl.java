@@ -18,7 +18,8 @@ public class ProduitServiceImpl implements IProduitService {
 	public IProduitDao pDao;
 
 	@Override
-	public Produit addProduct(Produit p, Client cl) {
+	public Produit addProduct(Produit p, Client cl, Categorie cat) {
+		p.setCategorie(cat);
 		p.setClient(cl);
 		return pDao.addProduct(p);
 	}

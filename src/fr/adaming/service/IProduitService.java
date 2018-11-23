@@ -11,7 +11,7 @@ import fr.adaming.model.Produit;
 @Local
 public interface IProduitService {
 
-	public Produit addProduct(Produit p, Client cl);
+	public Produit addProduct(Produit p, Client cl, Categorie cat);
 
 	public List<Produit> getProductbyClient(Client cl);
 	

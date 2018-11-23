@@ -32,10 +32,10 @@ public class ProduitDaoImpl implements IProduitDao {
 		Query query = em.createQuery(req);
 		query.setParameter("pIdcl", cl.getId());
 		List<Produit> liste = query.getResultList();
-		for(Produit p : liste){
-			p.setImage("data:image/png;base64,"+ Base64.encodeBase64String(p.getPhoto()));
-	}
-	return liste;
+		for (Produit p : liste) {
+			p.setImage("data:image/png;base64," + Base64.encodeBase64String(p.getPhoto()));
+		}
+		return liste;
 	}
 
 	@Override
@@ -51,15 +51,15 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Override
 	public Produit getProduit(Produit p) {
-		Produit pOut =em.find(Produit.class, p.getIdProduit());
-		pOut.setImage("data:image/png;base64,"+ Base64.encodeBase64String(p.getPhoto()));
+		Produit pOut = em.find(Produit.class, p.getIdProduit());
+		pOut.setImage("data:image/png;base64," + Base64.encodeBase64String(p.getPhoto()));
 		return pOut;
 	}
 
 	@Override
 	public int updateProduit(Produit p) {
-		String req="UPDATE Produit p SET p.designation=:pDesignation, p.description=:pDescription, p.prix=:pPrix, p.quantite=:pQuantite, p.photo=:pPhoto WHERE p.idProduit=:pIdProduit";
-		Query query=em.createQuery(req);
+		String req = "UPDATE Produit p SET p.designation=:pDesignation, p.description=:pDescription, p.prix=:pPrix, p.quantite=:pQuantite, p.photo=:pPhoto WHERE p.idProduit=:pIdProduit";
+		Query query = em.createQuery(req);
 		query.setParameter("pDesignation", p.getDesignation());
 		query.setParameter("pDescription", p.getDescription());
 		query.setParameter("pPrix", p.getPrix());
@@ -74,8 +74,12 @@ public class ProduitDaoImpl implements IProduitDao {
 		String req = "SELECT p FROM Produit p WHERE p.categorie.id=:pIdca";
 		Query query = em.createQuery(req);
 		query.setParameter("pIdca", ca.getIdCategorie());
-		return query.getResultList();
-	
+		List<Produit> liste = query.getResultList();
+		for (Produit p : liste) {
+			p.setImage("data:image/png;base64," + Base64.encodeBase64String(p.getPhoto()));
+		}
+		return liste;
+
 	}
 
 }

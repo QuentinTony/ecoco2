@@ -32,6 +32,14 @@ quantité : <p:inputText value="#{pMB.produit.quantite}" />
 
 photo : <p:fileUpload id="image" value="#{pMB.file}" mode="simple"
 					skinSimple="true" />
+					<h:selectOneMenu value="#{pMB.categorie.idCategorie}">
+					<f:selectItems value="#{caMB.listeCategories}" var="ca" itemLabel="#{ca.nomCategorie}"
+					
+					itemValue="#{ca.idCategorie}"/>
+					
+					</h:selectOneMenu>
+					
+					
 				<p:commandButton value="Ajouter un produit"
 					action="#{pMB.addProduct}" style="margin-right:20px" ajax="false" update="growl" />
 			</p:fieldset>
