@@ -26,8 +26,7 @@ public class ClientManagedBean implements Serializable {
 	private IProduitService pService;
 
 	private List<Produit> listeProduits;
-	
-	
+
 	private List<Client> listeClients;
 	HttpSession maSession;
 
@@ -68,7 +67,6 @@ public class ClientManagedBean implements Serializable {
 	public void initClient() {
 		this.maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.client = new Client();
-
 
 	}
 
@@ -123,18 +121,17 @@ public class ClientManagedBean implements Serializable {
 	public String updateLinkClient() {
 		return "updateClient";
 	}
-	
-	public String updateClient(Client cl) {
-		Client clOut = clService.getClient(this.client);
-		if (clOut != null) {
 
-			return "ListeAdmin";
+	public String updateClient(Client cl) {
+		int verif = clService.updateClient(this.client);
+		if (verif != 0) {
+			return "accueilClient";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("La modification n'a pas pu être effectuée"));
 			return "updateClient";
-
 		}
+
 	}
 
 	public String getClient(Client cl) {
@@ -149,5 +146,9 @@ public class ClientManagedBean implements Serializable {
 		}
 	}
 
+	public String deconnexion() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "accueilSite";
+	}
 
 }

@@ -133,7 +133,7 @@ public class ProduitManagedBean implements Serializable {
 	public String updateProduct() {
 		this.produit.setPhoto(file.getContents());
 
-		int verif = pService.updateProduit(this.produit, this.client);
+		int verif = pService.updateProduit(this.produit, this.client,this.categorie);
 		if (verif != 0) {
 			List<Produit> listeProduits = pService.getProductbyClient(this.client);
 			maSession.setAttribute("listeProduitsSession", listeProduits);
@@ -157,6 +157,10 @@ public class ProduitManagedBean implements Serializable {
 			return "accueilSite";
 
 		}
+	}
+	
+	public String espaceclient() {
+		return "accueilClient";
 	}
 
 }

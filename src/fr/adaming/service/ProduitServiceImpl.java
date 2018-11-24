@@ -42,7 +42,7 @@ public class ProduitServiceImpl implements IProduitService {
 	}
 
 	@Override
-	public int updateProduit(Produit p, Client cl) {
+	public int updateProduit(Produit p, Client cl,Categorie cat) {
 		Produit pOut = this.getProduit(p);
 		pOut.setDescription(p.getDescription());
 		pOut.setDesignation(p.getDesignation());
@@ -50,6 +50,7 @@ public class ProduitServiceImpl implements IProduitService {
 		pOut.setPhoto(p.getPhoto());
 		pOut.setQuantite(p.getQuantite());
 		pOut.setClient(cl);
+		pOut.setCategorie(cat);
 		return pDao.updateProduit(pOut);
 	}
 

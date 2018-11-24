@@ -20,20 +20,61 @@
 		</ui:define>
 
 		<ui:define name="monBody">
-
 			<h:form>
-				<p:dataTable id="dataTableCategories" var="p"
-					value="#{sessionScope.listeProduitsSession}" filteredValue="#{clMB.listeFiltProduits}">
+				<h1>Bienvenue dans votre espace client.</h1>
+				<br />
+				<p:dataTable  var="cl"
+					value="#{clMB.client}">
 					<p:column headerText="Id" rendered="false">
-						<h:outputText value="#{p.idProduit}"  />
+						<h:outputText value="#{cl.id}" />
+					</p:column>
+					<p:column headerText="Nom">
+						<h:outputText value="#{cl.nom}" />
+					</p:column>
+					<p:column headerText="Adresse">
+						<h:outputText value="#{cl.adresse}" />
+					</p:column>
+					<p:column headerText="Mail">
+						<h:outputText value="#{cl.mail}" />
+					</p:column>
+					<p:column headerText="Mot de passe" rendered="false">
+						<h:outputText value="#{cl.mdp}" />
+					</p:column>
+					<p:column headerText="Téléphone">
+						<h:outputText value="#{cl.tel}" />
+					</p:column>
+					<p:column headerText="Modifier">
+
+						<h:commandLink
+							action="#{clMB.updateLinkClient}"
+							style="margin-right:20px; position:relative;left:45%;width:10% ">
+							<h:graphicImage library="images" name="edit.png"/>
+						<f:setPropertyActionListener value="#{cl}"
+								target="#{clMB.client}" />
+						</h:commandLink>
 					</p:column>
 
-					<p:column filterBy="#{p.designation}" headerText="Designation" filterMatchMode="contains">
+				</p:dataTable>
+				</h:form>
+				<h:form>
+
+<br/><br/>
+				<p:dataTable id="dataTableCategories" var="p"
+					value="#{sessionScope.listeProduitsSession}">
+					<p:column headerText="Id" rendered="false">
+						<h:outputText value="#{p.idProduit}" />
+					</p:column>
+
+					<p:column filterBy="#{p.designation}" headerText="Designation"
+						filterMatchMode="contains">
 						<h:outputText value="#{p.designation}" />
 					</p:column>
 
 					<p:column headerText="Description">
 						<h:outputText value="#{p.description}" />
+					</p:column>
+					<p:column headerText="Catégorie">
+						<h:outputText value="#{p.categorie.nomCategorie}" />
 					</p:column>
 
 					<p:column headerText="Prix">
@@ -53,7 +94,7 @@
 							<h:graphicImage library="images" name="edit.png" />
 							<f:setPropertyActionListener value="#{p}" target="#{pMB.produit}" />
 						</h:commandLink>
-						<h:commandLink  action="#{pMB.deleteProduct}">
+						<h:commandLink action="#{pMB.deleteProduct}">
 							<h:graphicImage library="images" name="Close Window_26px.png" />
 							<f:setPropertyActionListener value="#{p.idProduit}"
 								target="#{pMB.produit.idProduit}" />
@@ -64,12 +105,20 @@
 
 
 				</p:dataTable>
-				<br/><br/>
+				<br />
+				<br />
 
-				<h:commandLink
-					action="#{pMB.addLinkProduct}" style="margin-right:20px" >
-					<h:graphicImage library="images" name="Add New_52px.png"/>
-					</h:commandLink>
+				<h:commandLink action="#{pMB.addLinkProduct}"
+					style="margin-right:20px; position:relative;left:48%">
+					<h:graphicImage library="images" name="Add New_52px.png" />
+				</h:commandLink>
+				<br />
+				<br />
+
+				<h:commandButton value="Déconnexion" action="#{clMB.deconnexion}"
+					style="margin-right:20px; position:relative;left:45%;width:10% ">
+
+				</h:commandButton>
 			</h:form>
 		</ui:define>
 

@@ -9,7 +9,7 @@
 <h:head>
 	<title>Ajouter un client</title>
 </h:head>
-
+		<h:body>
 <ui:composition template="/templates/layout.xhtml">
 
 	<ui:define name="monHeader">
@@ -20,19 +20,55 @@
 
 	<ui:define name="monBody">
 
-		<h:body>
-			<h:form>
-Id : <h:inputHidden value="#{clMB.client.id}" />
-Nom : <h:inputText value="#{clMB.client.nom}" />
-Adresse : <h:inputText value="#{clMB.client.adresse}" />
-Tel : <h:inputHidden value="#{clMB.client.tel}" />
-Mail : <h:inputHidden value="#{clMB.client.mail" />
-Mdp : <h:inputText value="#{clMB.client.mdp}" />
+
+		<h:form enctype="multipart/form-data">
+
+				<p:fieldset legend="Modifier mes informations"
+					style="width:42%; position:relative; left:29%">
+					<h:panelGrid id="grid" columns="3" >
+						<h:outputLabel for="name" value="Nom : " style="font-weight:bold" />
+						<p:inputText id="name" value="#{clMB.client.nom}" required="true"
+							label="Name" />
+						<p:message for="name" />
+						
+						<h:outputLabel for="adresse" value="Adresse : "
+							style="font-weight:bold" />
+						<p:inputText id="adresse" value="#{clMB.client.adresse}"
+							required="true" label="Adresse" />
+						<p:message for="adresse" />
 
 
-				<p:commandButton value="Modifier un client"
-					action="#{clMB.updateClient}" style="margin-right:20px" />
+						<h:outputLabel for="tel" value="Téléphone : "
+							style="font-weight:bold" />
+						<p:inputText id="tel" value="#{clMB.client.tel}" required="true"
+							label="Tel" />
+						<p:message for="adresse" />
+
+
+						<h:outputLabel for="mail" value="Mail : " style="font-weight:bold" />
+						<p:inputText id="mail" value="#{clMB.client.mail}" required="true"
+							label="Mail" />
+						<p:message for="mail" />
+
+
+						<h:outputLabel for="mdp1" value="Mot de passe : "
+							style="font-weight:bold" />
+						<p:password id="mdp1" match="mdp2" value="#{clMB.client.mdp}" required="true"
+							label="Mdp1" />
+						<p:message for="mdp1" />
+						
+						<h:outputLabel for="mdp2" value="Retapez votre mot de passe : "
+							style="font-weight:bold" />
+						<p:password id="mdp2" value="#{clMB.client.mdp}" required="true"
+							label="Mdp2" />
+						<p:message for="mdp2" />
+					</h:panelGrid>
+
+					<h:commandButton value="Modifier mes informations" action="#{clMB.updateClient}"
+						style="margin-right:20px" ajax="false" />
+				</p:fieldset>
 			</h:form>
+
 	</ui:define>
 
 	<ui:define name="monFooter">

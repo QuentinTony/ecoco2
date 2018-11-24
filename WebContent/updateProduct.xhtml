@@ -34,7 +34,13 @@ Designation : <h:inputText value="#{pMB.produit.designation}" /><br/><br/>
 Description : <h:inputText value="#{pMB.produit.description}" /><br/><br/>
 Prix :<p:inputText value="#{pMB.produit.prix}" /><br/><br/>
 Quantité : <p:inputText value="#{pMB.produit.quantite}" /><br/><br/>
-
+Caétgorie : <h:selectOneMenu value="#{pMB.categorie.idCategorie}">
+					<f:selectItems value="#{caMB.listeCategories}" var="ca" itemLabel="#{ca.nomCategorie}"
+					
+					itemValue="#{ca.idCategorie}"/>
+					
+					</h:selectOneMenu>
+					<br/><br/>
 Image : <h:graphicImage value="#{p.image}" styleClass="image" />
 
 
@@ -44,6 +50,12 @@ Image : <h:graphicImage value="#{p.image}" styleClass="image" />
 						action="#{pMB.updateProduct}" style="margin-right:20px"
 						ajax="false" update="growl" />
 				</p:fieldset>
+				<br/>
+				<br/>
+				<p:commandButton value="Retour à votre espace client"
+						action="#{pMB.espaceclient}" style="margin-right:20px; position:relative; left:37.5%; width:25%"
+						ajax="false" update="growl" />
+				
 			</h:form>
 
 

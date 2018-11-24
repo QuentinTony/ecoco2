@@ -21,10 +21,11 @@ public interface IProduitService {
 
 	public Produit getProduit(Produit p);
 
-	public int updateProduit(Produit p, Client cl);
+	public int updateProduit(Produit p, Client cl,Categorie cat);
 
 	public int updateProduit(Produit p);
 
 	public List<Produit> getProductbyCategory(Categorie ca);
+
 
 }

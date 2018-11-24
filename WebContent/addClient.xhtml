@@ -23,7 +23,7 @@
 			<h:form enctype="multipart/form-data">
 
 				<p:fieldset legend="S'enregistrer"
-					style="width:50%; position:relative; left:25%">
+					style="width:42%; position:relative; left:29%">
 					<h:panelGrid id="grid" columns="3" >
 						<h:outputLabel for="name" value="Nom : " style="font-weight:bold" />
 						<p:inputText id="name" value="#{clMB.client.nom}" required="true"
@@ -52,11 +52,17 @@
 						<p:message for="mail" />
 
 
-						<h:outputLabel for="mdp" value="Mot de passe : "
+						<h:outputLabel for="mdp1" value="Mot de passe : "
 							style="font-weight:bold" />
-						<p:inputMask id="mdp" value="#{clMB.client.mdp}" required="true"
-							label="Mdp" />
-						<p:message for="mdp" />
+						<p:password id="mdp1" match="mdp2" value="#{clMB.client.mdp}" required="true"
+							label="Mdp1" />
+						<p:message for="mdp1" />
+						
+						<h:outputLabel for="mdp2" value="Retapez votre mot de passe : "
+							style="font-weight:bold" />
+						<p:password id="mdp2" value="#{clMB.client.mdp}" required="true"
+							label="Mdp2" />
+						<p:message for="mdp2" />
 					</h:panelGrid>
 
 					<p:commandButton value="S'enregistrer" action="#{clMB.addClient}"
