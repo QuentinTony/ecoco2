@@ -82,4 +82,41 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	}
 
+	@Override
+	public List<Produit> getProductbyString(String saisie) {
+
+		String req = "SELECT p FROM Produit as p WHERE p.designation LIKE :pSaisie";
+		Query query = em.createQuery(req).setParameter("pSaisie", "%" + saisie + "%");
+		List<Produit> liste = query.getResultList();
+		for (Produit p : liste) {
+			p.setImage("data:image/png;base64," + Base64.encodeBase64String(p.getPhoto()));
+		}
+		return liste;
+	}
+
+	@Override
+	public List<Produit> getProductbyCatAndString(String saisie, Categorie ca) {
+		String req = "SELECT p FROM Produit as p WHERE c_id=:pIdc AND p.designation LIKE :pSaisie";
+		Query query = em.createQuery(req).setParameter("pSaisie", "%" + saisie + "%").setParameter("pIdc",
+				ca.getIdCategorie());
+		List<Produit> liste = query.getResultList();
+		for (Produit p : liste) {
+			p.setImage("data:image/png;base64," + Base64.encodeBase64String(p.getPhoto()));
+		}
+		return liste;
+	}
+
+	@Override
+	public List<Produit> getProductbyClAndString(String saisie, Client cl) {
+
+		String req = "SELECT p FROM Produit as p WHERE cl_id=:pIdcl AND p.designation LIKE :pSaisie";
+		Query query = em.createQuery(req).setParameter("pSaisie", "%" + saisie + "%").setParameter("pIdcl",
+				cl.getId());
+		List<Produit> liste = query.getResultList();
+		for (Produit p : liste) {
+			p.setImage("data:image/png;base64," + Base64.encodeBase64String(p.getPhoto()));
+		}
+		return liste;
+	}
+
 }

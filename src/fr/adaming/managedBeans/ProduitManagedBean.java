@@ -29,6 +29,7 @@ public class ProduitManagedBean implements Serializable {
 	private Categorie categorie;
 	HttpSession maSession;
 	private UploadedFile file;
+	private String saisie;
 
 	// constructeur vide
 	public ProduitManagedBean() {
@@ -63,6 +64,14 @@ public class ProduitManagedBean implements Serializable {
 
 	public void setFile(UploadedFile file) {
 		this.file = file;
+	}
+	
+	public String getSaisie() {
+		return saisie;
+	}
+
+	public void setSaisie(String saisie) {
+		this.saisie = saisie;
 	}
 
 	// methode
@@ -150,10 +159,52 @@ public class ProduitManagedBean implements Serializable {
 		List<Produit> listeProduits = pService.getProductbyCategory(this.categorie);
 		if (listeProduits != null) {
 			maSession.setAttribute("listeProduitsSession", listeProduits);
+			maSession.setAttribute("caSession", categorie);
 			return "afficherProduits";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("La recherche n'a pas pu être effectuée"));
+			return "accueilSite";
+
+		}
+	}
+	
+	public String getProductbySaisie() {
+		List<Produit> listeProduits = pService.getProductbyString(this.saisie);
+		if (listeProduits != null) {
+			maSession.setAttribute("listeProduitsSession", listeProduits);
+			return "afficherProduitsSaisie";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("La recherche n'a pas aboutie"));
+			return "accueilSite";
+
+		}
+	}
+	
+	public String getProductbyCatAndSaisie() {
+		categorie = (Categorie) maSession.getAttribute("caSession");
+		List<Produit> listeProduits = pService.getProductbyCatAndString(this.saisie,categorie);
+		if (listeProduits != null) {
+			maSession.setAttribute("listeProduitsSession", listeProduits);
+			return "afficherProduitsSaisieCat";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("La recherche n'a pas aboutie"));
+			return "accueilSite";
+
+		}
+	}
+	
+	public String getProductbyClAndSaisie() {
+		client = (Client) maSession.getAttribute("clSession");
+		List<Produit> listeProduits = pService.getProductbyClAndString(this.saisie,client);
+		if (listeProduits != null) {
+			maSession.setAttribute("listeProduitsSession", listeProduits);
+			return "afficherProduitsSaisieCat";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("La recherche n'a pas aboutie"));
 			return "accueilSite";
 
 		}

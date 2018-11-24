@@ -21,6 +21,7 @@
 		</ui:define>
 
 		<ui:define name="monBody">
+
 			<p:fieldset legend="Panier" styleClass="fieldsetStyle">
 				<h:form id="tablePanier"
 					rendered="#{not empty sessionScope.paSession.listeLigneCommandes}">
@@ -64,36 +65,42 @@
 			<br />
 			<h:form>
 				<h:panelGrid columns="2">
-					<p:inputText value="#{pMB.saisie}" placeholder="Rechercher un produit" />
-					<h:commandButton image="resources/images/Search_26px.png" action="#{pMB.getProductbySaisie}" />
+					<p:inputText value="#{pMB.saisie}"
+						placeholder="Rechercher un produit" />
+					<h:commandButton image="resources/images/Search_26px.png"
+						action="#{pMB.getProductbyCatAndSaisie}" />
 				</h:panelGrid>
 			</h:form>
 			<br />
+
 			<h:form id="tableCat">
-				<p:dataGrid id="dataTableCategories" var="cat"
-					value="#{caMB.listeCategories}" columns="3" layout="grid" rows="6"
-					paginator="true">
+				<p:dataGrid id="dataTableCategories" var="pr"
+					value="#{sessionScope.listeProduitsSession}" columns="5"
+					layout="grid" rows="15" paginator="true">
 					<f:facet name="header">
-Catégories        </f:facet>
+Liste des produits de la catégorie #{sessionScope.caSession.nomCategorie} incluant "#{pMB.saisie}"  </f:facet>
 
-					<p:panel header="#{cat.nomCategorie}"
-						style="text-align:center;padding:10px;">
+					<p:panel style="text-align:center;padding:10px;">
 						<h:panelGrid style="width:100%;" columns="1">
-							<p:commandLink action="#{pMB.getProductbyCategory}" ajax="false"
-								title="#{cat.nomCategorie}">
-								<h:graphicImage value="#{cat.image}" styleClass="image2" />
-								<f:setPropertyActionListener value="#{cat}"
-									target="#{pMB.categorie}"></f:setPropertyActionListener>
+							<p:commandLink action="#{pMB.afficherProduit}" ajax="false"
+								title="afficher le produit">
+								<h:graphicImage value="#{pr.image}" styleClass="image2" />
+								<f:setPropertyActionListener value="#{pr}"
+									target="#{pMB.produit}"></f:setPropertyActionListener>
 							</p:commandLink>
-
-							<h:outputText value="#{cat.listeProduits.size()} produits" />
+							<p:commandLink action="#{pMB.afficherProduit}" ajax="false"
+								title="afficher le produit">
+								<h:outputText value="#{pr.designation}" styleClass="image2" />
+								<f:setPropertyActionListener value="#{pr}"
+									target="#{pMB.produit}"></f:setPropertyActionListener>
+							</p:commandLink>
+							<h:outputText value="Stock : #{pr.quantite}" />
+							<h:outputText value="Prix : #{pr.prix}€" />
 						</h:panelGrid>
 					</p:panel>
 
 				</p:dataGrid>
 			</h:form>
-
-			<br />
 
 		</ui:define>
 
@@ -107,4 +114,5 @@ Catégories        </f:facet>
 	</ui:composition>
 
 </h:body>
+
 </html>

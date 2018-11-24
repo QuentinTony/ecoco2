@@ -76,4 +76,22 @@ public class ProduitServiceImpl implements IProduitService {
 		return pDao.getProduit(p);
 	}
 
+	@Override
+	public List<Produit> getProductbyString(String saisie) {
+		
+		return pDao.getProductbyString(saisie);
+	}
+
+	@Override
+	public List<Produit> getProductbyCatAndString(String saisie, Categorie ca) {
+		
+		return pDao.getProductbyCatAndString(saisie, ca);
+	}
+
+	@Override
+	public List<Produit> getProductbyClAndString(String saisie, Client cl) {
+		
+		return pDao.getProductbyClAndString(saisie, cl);
+	}
+
 }

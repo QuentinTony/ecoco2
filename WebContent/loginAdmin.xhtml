@@ -24,16 +24,20 @@
 		<ui:define name="monBody">
 			<h:form>
 				<div class="formStyle">
-					<h:panelGrid columns="1" cellspacing="10">
-						<p:outputLabel value="Mail" />
-						<p:inputText id="input1" value="#{aMB.admin.mail}" />
+					<p:fieldset legend="Espace Administrateur"
+						style="padding:10px;border:1px solid darkgrey">
+						<h:panelGrid columns="1" cellspacing="10">
+							<p:outputLabel value="Mail" />
+							<p:inputText id="input1" value="#{aMB.admin.mail}" />
 
-						<p:outputLabel value="Mot de passe" />
-						<p:inputText id="input2" value="#{aMB.admin.mdp}" />
+							<p:outputLabel value="Mot de passe" />
+							<p:inputText id="input2" value="#{aMB.admin.mdp}" />
 
-						<p:commandButton value="Se connecter" action="#{aMB.isExist}" ajax="false"/>
+							<p:commandButton value="Se connecter" action="#{aMB.isExist}"
+								ajax="false" />
 
-					</h:panelGrid>
+						</h:panelGrid>
+					</p:fieldset>
 				</div>
 			</h:form>
 
