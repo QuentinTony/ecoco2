@@ -23,23 +23,23 @@ public class Commande implements Serializable {
 	// attributs
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_co")
+	@Column(name = "id_co")
 	private long id;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCommande;
 
 	// association manytoone avec le client
 	@ManyToOne
-	@JoinColumn(name="cl_id",referencedColumnName="id_cl")
+	@JoinColumn(name = "cl_id", referencedColumnName = "id_cl")
 	private Client client;
-	
+
 	// association many to many ac commande A FAIRE
-	@OneToMany(mappedBy="commande")
+	@OneToMany(mappedBy = "commande")
 	private List<LigneCommande> lignesCommandes;
-	
+
 	// constructeurs
-	
+
 	public Commande(long id, Date dateCommande) {
 		super();
 		this.id = id;
@@ -56,7 +56,7 @@ public class Commande implements Serializable {
 	}
 
 	// getter setter
-	
+
 	public long getId() {
 		return id;
 	}
@@ -81,7 +81,12 @@ public class Commande implements Serializable {
 		this.client = client;
 	}
 
-	
-	
-	
+	public List<LigneCommande> getLignesCommandes() {
+		return lignesCommandes;
+	}
+
+	public void setLignesCommandes(List<LigneCommande> lignesCommandes) {
+		this.lignesCommandes = lignesCommandes;
+	}
+
 }

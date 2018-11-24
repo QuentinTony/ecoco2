@@ -21,7 +21,10 @@
 		</ui:define>
 
 		<ui:define name="monBody">
-			<p:fieldset legend="Panier" styleClass="fieldsetStyle">
+			<h:graphicImage id="togglePanier"
+				value="resources/images/togglePanier.png" onclick="togglePanier()"
+				onmouseover="animImgPanier()" onmouseout="animImgPanier1()" title="Afficher/Cacher le panier" />
+			<p:fieldset legend="Panier" styleClass="fieldsetStyle" id="panier">
 				<h:form id="tablePanier"
 					rendered="#{not empty sessionScope.paSession.listeLigneCommandes}">
 					<p:dataTable var="lc"
@@ -64,8 +67,10 @@
 			<br />
 			<h:form>
 				<h:panelGrid columns="2">
-					<p:inputText value="#{pMB.saisie}" placeholder="Rechercher un produit" />
-					<h:commandButton image="resources/images/Search_26px.png" action="#{pMB.getProductbySaisie}" />
+					<p:inputText value="#{pMB.saisie}"
+						placeholder="Rechercher un produit" />
+					<h:commandButton image="resources/images/Search_26px.png"
+						action="#{pMB.getProductbySaisie}" />
 				</h:panelGrid>
 			</h:form>
 			<br />

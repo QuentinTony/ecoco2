@@ -5,9 +5,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-
 <h:head>
-	<title>Bienvenue dans votre espace client</title>
+	<title>Bienvenue dans votre espace client.</title>
 </h:head>
 
 <h:body>
@@ -23,50 +22,57 @@
 			<h:form>
 				<h1>Bienvenue dans votre espace client.</h1>
 				<br />
-				<p:dataTable  var="cl"
-					value="#{clMB.client}">
-					<p:column headerText="Id" rendered="false">
-						<h:outputText value="#{cl.id}" />
-					</p:column>
+				<p:dataTable var="" value="">
+
 					<p:column headerText="Nom">
-						<h:outputText value="#{cl.nom}" />
+						<h:outputText value="#{sessionScope.clSession.nom}" />
 					</p:column>
 					<p:column headerText="Adresse">
-						<h:outputText value="#{cl.adresse}" />
+						<h:outputText value="#{sessionScope.clSession.adresse}" />
 					</p:column>
 					<p:column headerText="Mail">
-						<h:outputText value="#{cl.mail}" />
+						<h:outputText value="#{sessionScope.clSession.mail}" />
 					</p:column>
 					<p:column headerText="Mot de passe" rendered="false">
-						<h:outputText value="#{cl.mdp}" />
+						<h:outputText value="#{sessionScope.clSession.mdp}" />
 					</p:column>
 					<p:column headerText="Téléphone">
-						<h:outputText value="#{cl.tel}" />
+						<h:outputText value="#{sessionScope.clSession.tel}" />
 					</p:column>
 					<p:column headerText="Modifier">
 
-						<h:commandLink
-							action="#{clMB.updateLinkClient}"
+						<h:commandLink action="#{clMB.updateLinkClient}"
 							style="margin-right:20px; position:relative;left:45%;width:10% ">
-							<h:graphicImage library="images" name="edit.png"/>
-						<f:setPropertyActionListener value="#{cl}"
+							<h:graphicImage library="images" name="edit.png" />
+							<f:setPropertyActionListener value="#{sessionScope.clSession}"
 								target="#{clMB.client}" />
 						</h:commandLink>
 					</p:column>
 
 				</p:dataTable>
-				</h:form>
-				<h:form>
+			</h:form>
 
-<br/><br/>
-				<p:dataTable id="dataTableCategories" var="p"
-					value="#{sessionScope.listeProduitsSession}">
+			<br />
+			<h:form>
+				<h:panelGrid columns="2">
+					<p:inputText value="#{pMB.saisie}"
+						placeholder="Rechercher un produit" />
+					<h:commandButton image="resources/images/Search_26px.png"
+						action="#{pMB.getProductbyClAndSaisie}" />
+				</h:panelGrid>
+			</h:form>
+			<br />
+
+			<h:form>
+				<p:dataTable var="p" value="#{sessionScope.listeProduitsSession}"
+					paginator="true" rows="8">
+					<f:facet name="header">
+Liste des vos produits en vente sur notre site </f:facet>
 					<p:column headerText="Id" rendered="false">
 						<h:outputText value="#{p.idProduit}" />
 					</p:column>
 
-					<p:column filterBy="#{p.designation}" headerText="Designation"
-						filterMatchMode="contains">
+					<p:column headerText="Designation">
 						<h:outputText value="#{p.designation}" />
 					</p:column>
 
@@ -78,7 +84,7 @@
 					</p:column>
 
 					<p:column headerText="Prix">
-						<h:outputText value="#{p.prix}" />
+						<h:outputText value="#{p.prix}€" />
 					</p:column>
 
 					<p:column headerText="Quantité">
@@ -100,25 +106,48 @@
 								target="#{pMB.produit.idProduit}" />
 						</h:commandLink>
 
-
 					</p:column>
 
-
 				</p:dataTable>
-				<br />
-				<br />
 
+				<br />
 				<h:commandLink action="#{pMB.addLinkProduct}"
-					style="margin-right:20px; position:relative;left:48%">
+					style="margin-right:20px; position:relative;left:48%" title="Ajouter un produit">
 					<h:graphicImage library="images" name="Add New_52px.png" />
 				</h:commandLink>
 				<br />
 				<br />
 
-				<h:commandButton value="Déconnexion" action="#{clMB.deconnexion}"
-					style="margin-right:20px; position:relative;left:45%;width:10% ">
+				<p:dataTable id="dataTableCategories" var="lc"
+					value="#{sessionScope.lcSession}" paginator="true" rows="8">
+					<f:facet name="header">
+Liste des vos commandes sur notre site </f:facet>
 
-				</h:commandButton>
+					<p:column headerText="Date de la commande">
+						<h:outputText value="#{lc.commande.dateCommande}" />
+					</p:column>
+
+					<p:column headerText="Produit">
+						<h:outputText value="#{lc.produit.designation}" />
+					</p:column>
+
+					<p:column headerText="Quantité">
+						<h:outputText value="#{lc.quantite}" />
+					</p:column>
+
+					<p:column headerText="Prix">
+						<h:outputText value="#{lc.prix}€" />
+					</p:column>
+
+				</p:dataTable>
+
+				<br />
+				<br />
+
+				<p:commandButton value="Déconnexion" action="#{clMB.deconnexion}"
+					style="margin-right:20px; position:relative;left:45%;" ajax="false">
+
+				</p:commandButton>
 			</h:form>
 		</ui:define>
 
@@ -130,8 +159,6 @@
 		</ui:define>
 
 	</ui:composition>
-
-
 
 
 </h:body>

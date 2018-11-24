@@ -152,7 +152,7 @@ public class ProduitManagedBean implements Serializable {
 					new FacesMessage("La modification n'a pas pu être effectuée"));
 			return "updateProduct";
 		}
-
+ 
 	}
 
 	public String getProductbyCategory() {
@@ -201,11 +201,11 @@ public class ProduitManagedBean implements Serializable {
 		List<Produit> listeProduits = pService.getProductbyClAndString(this.saisie,client);
 		if (listeProduits != null) {
 			maSession.setAttribute("listeProduitsSession", listeProduits);
-			return "afficherProduitsSaisieCat";
+			return "accueilClient";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("La recherche n'a pas aboutie"));
-			return "accueilSite";
+			return "accueilClient";
 
 		}
 	}

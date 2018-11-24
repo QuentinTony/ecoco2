@@ -22,7 +22,11 @@
 
 		<ui:define name="monBody">
 
-			<p:fieldset legend="Panier" styleClass="fieldsetStyle">
+			<h:graphicImage id="togglePanier"
+				value="resources/images/togglePanier.png" onclick="togglePanier()"
+				onmouseover="animImgPanier()" onmouseout="animImgPanier1()"
+				title="Afficher/Cacher le panier" />
+			<p:fieldset legend="Panier" styleClass="fieldsetStyle" id="panier">
 				<h:form id="tablePanier"
 					rendered="#{not empty sessionScope.paSession.listeLigneCommandes}">
 					<p:dataTable var="lc"

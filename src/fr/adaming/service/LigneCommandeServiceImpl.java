@@ -1,5 +1,7 @@
 package fr.adaming.service;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
@@ -37,6 +39,12 @@ public class LigneCommandeServiceImpl implements ILigneCommandeService{
 	public LigneCommande getLigneCommande(LigneCommande lc, Commande co, Client cl) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<LigneCommande> getAllLigneCommande(Commande co) {
+		
+		return lcDao.getAllLigneCommande(co);
 	}
 
 	

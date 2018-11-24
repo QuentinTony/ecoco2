@@ -1,6 +1,7 @@
 package fr.adaming.managedBeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,8 +12,12 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.Commande;
+import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Produit;
 import fr.adaming.service.IClientService;
+import fr.adaming.service.ICommandeService;
+import fr.adaming.service.ILigneCommandeService;
 import fr.adaming.service.IProduitService;
 
 @ManagedBean(name = "clMB")
@@ -24,6 +29,12 @@ public class ClientManagedBean implements Serializable {
 
 	@EJB
 	private IProduitService pService;
+
+	@EJB
+	private ICommandeService coService;
+
+	@EJB
+	private ILigneCommandeService lcService;
 
 	private List<Produit> listeProduits;
 
@@ -76,7 +87,23 @@ public class ClientManagedBean implements Serializable {
 			this.listeProduits = pService.getProductbyClient(clOut);
 			maSession.setAttribute("listeProduitsSession", listeProduits);
 
+			List<Commande> listeCommande = coService.getAllCommandes(clOut);
+
+			List<LigneCommande> lcOut = new ArrayList<LigneCommande>();
+
+			for (Commande co : listeCommande) {
+				lcOut = lcService.getAllLigneCommande(co);
+				for(LigneCommande lc : lcOut) {
+					lc.setCommande(co);
+				}
+				co.setLignesCommandes(lcOut);
+			}
+
+			clOut.setListeCommandes(listeCommande);
+
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clSession", clOut);
+			
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("lcSession", lcOut);
 
 			return "accueilClient";
 
@@ -125,6 +152,9 @@ public class ClientManagedBean implements Serializable {
 	public String updateClient(Client cl) {
 		int verif = clService.updateClient(this.client);
 		if (verif != 0) {
+			Client clOut = clService.getClient(client);
+			maSession.setAttribute("clSession", clOut);
+			
 			return "accueilClient";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,

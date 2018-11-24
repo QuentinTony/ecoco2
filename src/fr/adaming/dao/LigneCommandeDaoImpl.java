@@ -1,9 +1,13 @@
 package fr.adaming.dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import fr.adaming.model.Commande;
 import fr.adaming.model.LigneCommande;
 
 @Stateless
@@ -36,6 +40,25 @@ public class LigneCommandeDaoImpl implements ILigneCommandeDao{
 	public LigneCommande getLigneCommande(LigneCommande lc) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<LigneCommande> getAllLigneCommande(Commande co) {
+		
+		// requete JPQL pour récupérer la liste des commandes
+
+		String req = "SELECT lc FROM LigneCommande as lc WHERE lc.commande.id=:pIdco";
+
+		// création du query
+
+		Query query = em.createQuery(req);
+
+		// setter les params
+
+		query.setParameter("pIdco", co.getId());
+
+		return query.getResultList();
+
 	}
 
 }
