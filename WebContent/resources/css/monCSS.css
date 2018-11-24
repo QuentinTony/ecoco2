@@ -1,7 +1,16 @@
 .fieldsetStyle {
 	padding: 20px;
-	border: 1px solid black;
+	font-size: 150%;
+	border: 3px solid Darkblue;
 	border-radius: 15px;
+}
+
+.fieldsetStyle .ui-state-default {
+	padding: 20px;
+	font-family: Arial;
+	border: 3px solid Darkblue;
+	border-radius: 15px;
+	background: CornflowerBlue;
 }
 
 .bodyStyle {
@@ -10,12 +19,12 @@
 }
 
 .headerStyle {
-	background-color: darkblue;
-	height: 120px;
+	font-family: Calibri;
+	height: 140px;
 }
 
 .footerStyle {
-	background-color: darkblue;
+	font-family: Calibri;
 	height: 120px;
 }
 
@@ -34,6 +43,17 @@
 	border-radius: 10%;
 }
 
+#rcorners2 {
+	border-radius: 25px;
+	background-color: CornflowerBlue;
+	border: 5px solid Darkblue;
+	width: 95%;
+	left: 2.5%;
+	height: 120px;
+	position: absolute;
+	height: 120px;
+}
+
 .formStyle {
 	padding: 20px;
 	width: 250px;
@@ -46,4 +66,123 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
+}
+
+.logo {
+	position: absolute;
+	left: 10%;
+	top: 8%;
+}
+
+.headertext {
+	position: absolute;
+	left: 40%;
+	text-align: center;
+	color: DarkBlue;
+	text-align: center;
+	color: DarkBlue;
+	font-size: 250%;
+}
+
+.footertext1 {
+	position: absolute;
+	left: 20%;
+	bootom: 5%;
+	text-align: center;
+	color: DarkBlue;
+	text-align: center;
+	color: DarkBlue;
+	font-size: 250%;
+}
+
+.footertext2 {
+	position: absolute;
+	left: 40%;
+	bootom: 2%;
+	text-align: center;
+	color: DarkBlue;
+	text-align: center;
+	color: DarkBlue;
+	font-size: 100%;
+	text-align: center;
+}
+
+.ui-menubar, .ui-menu-child, .ui-menu {
+	background-color: darkblue !important;
+	border: 3px solid darkblue !important;
+	border-radius: 10px;
+}
+
+.ui-menuitem-link:hover {
+	background-color: CornflowerBlue !important;
+	border: 2px solid darkblue !important;
+	border-radius: 10px;
+}
+
+.ui-menuitem-text:hover {
+	color: darkblue !important;
+}
+
+.ui-menuitem-text {
+	color: white;
+}
+
+.ui-paginator-top {
+	background-color: CornflowerBlue !important;
+	border: 2px solid darkblue !important;
+}
+
+.ui-paginator-bottom {
+	background-color: CornflowerBlue !important;
+	border: 2px solid darkblue !important;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.ui-datagrid {
+	border: 2px solid darkblue !important;
+	border-radius: 14px;
+}
+
+.ui-datagrid-header {
+	background-color: CornflowerBlue !important;
+	border: 2px solid darkblue !important;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.ui-panel-titlebar {
+	background-color: CornflowerBlue !important;
+	border: 2px solid darkblue !important;
+	border-radius: 8px;
+}
+
+.ui-panel {
+	border: 3px solid darkblue !important;
+	border-radius: 12px;
+}
+
+.ui-fieldset-legend {
+	background-color: CornflowerBlue !important;
+	border: 2px solid darkblue !important;
+	border-radius: 10px;
+}
+
+.ui-fieldset {
+	border: 2px solid darkblue !important;
+	border-radius: 10px;
+}
+
+.ui-datatable-tablewrapper {
+	border: 2px solid darkblue !important;
+	border-radius: 10px;
+}
+
+.ui-state-default {
+	
+	border: 1px solid darkblue !important;
+}
+
+.ui-widget-content {
+	border: 1px solid darkblue !important;
 }

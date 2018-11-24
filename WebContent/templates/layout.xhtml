@@ -23,13 +23,13 @@
 
 	<h:form>
 
-		<p:menubar>
+		<p:menubar styleClass="menubar">
 
-			<p:menuitem value="Accueil" action="#{paMB.afficherAccueil}"/>
+			<p:menuitem styleClass="menuitem" value="Accueil" action="#{paMB.afficherAccueil}"/>
 
-			<p:menuitem value="Espace Client" url="loginClient.xhtml" />
+			<p:menuitem styleClass="menuitem" value="Espace Client" url="loginClient.xhtml" />
 
-			<p:menuitem value="Espace Admin" url="loginAdmin.xhtml" />
+			<p:menuitem styleClass="menuitem" value="Espace Admin" url="loginAdmin.xhtml" />
 
 			<f:facet name="categories">
 				<p:selectOneMenu value="#{caMB.categorie.idCategorie}">
@@ -52,7 +52,6 @@
 	</div>
 
 	<br></br>
-
 	<div class="footerStyle">
 		<ui:insert name="monFooter">
 			<ui:include src="/templates/footer.xhtml"></ui:include>

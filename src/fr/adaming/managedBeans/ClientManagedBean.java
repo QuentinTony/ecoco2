@@ -147,7 +147,7 @@ public class ClientManagedBean implements Serializable {
 	}
 
 	public String deconnexion() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		maSession.removeAttribute("clSession");
 		return "accueilSite";
 	}
 
