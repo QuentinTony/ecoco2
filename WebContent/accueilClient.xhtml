@@ -22,12 +22,13 @@
 		<ui:define name="monBody">
 
 			<h:form>
-				<p:dataTable id="dataTableCategories" var="p" value="#{sessionScope.listeProduitsSession}">
-					<p:column headerText="Id">
-						<h:outputText value="#{p.idProduit}" />
+				<p:dataTable id="dataTableCategories" var="p"
+					value="#{sessionScope.listeProduitsSession}" filteredValue="#{clMB.listeFiltProduits}">
+					<p:column headerText="Id" rendered="false">
+						<h:outputText value="#{p.idProduit}"  />
 					</p:column>
 
-					<p:column headerText="Designation">
+					<p:column filterBy="#{p.designation}" headerText="Designation" filterMatchMode="contains">
 						<h:outputText value="#{p.designation}" />
 					</p:column>
 
@@ -47,24 +48,28 @@
 						<h:graphicImage value="#{p.image}" styleClass="image" />
 					</p:column>
 
-					<p:column headerText="Suppression">
-						<h:commandLink value="Supprimer" action="#{pMB.deleteProduct}">
+					<p:column headerText="Actions">
+						<h:commandLink action="#{pMB.updateLinkProduct}">
+							<h:graphicImage library="images" name="edit.png" />
+							<f:setPropertyActionListener value="#{p}" target="#{pMB.produit}" />
+						</h:commandLink>
+						<h:commandLink  action="#{pMB.deleteProduct}">
+							<h:graphicImage library="images" name="Close Window_26px.png" />
 							<f:setPropertyActionListener value="#{p.idProduit}"
-								target="#{pMB.produit.idProduit}"></f:setPropertyActionListener>
+								target="#{pMB.produit.idProduit}" />
 						</h:commandLink>
-					</p:column>
 
-					<p:column headerText="Modification">
-						<h:commandLink value="Modifier" action="#{pMB.updateLinkProduct}">
-							<f:setPropertyActionListener value="#{p}" target="#{pMB.produit}"></f:setPropertyActionListener>
-						</h:commandLink>
+
 					</p:column>
 
 
 				</p:dataTable>
+				<br/><br/>
 
-				<p:commandButton value="Ajouter un produit"
-					action="#{pMB.addLinkProduct}" style="margin-right:20px" />
+				<h:commandLink
+					action="#{pMB.addLinkProduct}" style="margin-right:20px" >
+					<h:graphicImage library="images" name="Add New_52px.png"/>
+					</h:commandLink>
 			</h:form>
 		</ui:define>
 

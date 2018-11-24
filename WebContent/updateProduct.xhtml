@@ -24,18 +24,22 @@
 
 			<h:form enctype="multipart/form-data">
 				<p:growl id="growl" life="3000" autoUpdate="true" showDetail="true" />
-				<p:fieldset legend="Modifier un produit">
-					<h:inputHidden value="#{pMB.produit.idProduit}" />
-designation : <h:inputText value="#{pMB.produit.designation}" />
-description : <h:inputText value="#{pMB.produit.description}" />
-prix :<p:inputText value="#{pMB.produit.prix}" />
-quantité : <p:inputText value="#{pMB.produit.quantite}" />
+<p:fieldset legend="Modiifier un produit" style="width:50%; position:relative; left:25%">
 
-photo : <h:graphicImage value="#{p.image}" styleClass="image" />
+					<h:inputHidden value="#{pMB.produit.idProduit}" />
+					
+					
+					
+Designation : <h:inputText value="#{pMB.produit.designation}" /><br/><br/>
+Description : <h:inputText value="#{pMB.produit.description}" /><br/><br/>
+Prix :<p:inputText value="#{pMB.produit.prix}" /><br/><br/>
+Quantité : <p:inputText value="#{pMB.produit.quantite}" /><br/><br/>
+
+Image : <h:graphicImage value="#{p.image}" styleClass="image" />
 
 
 <p:fileUpload id="image" value="#{pMB.file}" mode="simple"
-						skinSimple="true" />
+						skinSimple="true"  label="Choisir une image"/><br/><br/>
 					<p:commandButton value="Modifier un produit"
 						action="#{pMB.updateProduct}" style="margin-right:20px"
 						ajax="false" update="growl" />

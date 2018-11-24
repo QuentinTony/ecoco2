@@ -26,6 +26,8 @@ public class ClientManagedBean implements Serializable {
 	private IProduitService pService;
 
 	private List<Produit> listeProduits;
+	
+	
 	private List<Client> listeClients;
 	HttpSession maSession;
 
@@ -66,6 +68,7 @@ public class ClientManagedBean implements Serializable {
 	public void initClient() {
 		this.maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.client = new Client();
+
 
 	}
 
@@ -145,4 +148,6 @@ public class ClientManagedBean implements Serializable {
 			return "ListeAdmin";
 		}
 	}
+
+
 }

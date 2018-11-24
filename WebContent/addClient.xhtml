@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>S'enregistrer</title>
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+
+		<ui:define name="monHeader">
+			<ui:insert>
+				<ui:include src="/templates/header.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+		<ui:define name="monBody">
+			<h:form enctype="multipart/form-data">
+
+				<p:fieldset legend="S'enregistrer"
+					style="width:50%; position:relative; left:25%">
+					<h:panelGrid id="grid" columns="3" >
+						<h:outputLabel for="name" value="Nom : " style="font-weight:bold" />
+						<p:inputText id="name" value="#{clMB.client.nom}" required="true"
+							label="Name" />
+						<p:message for="name" />
+						
+
+
+						<h:outputLabel for="adresse" value="Adresse : "
+							style="font-weight:bold" />
+						<p:inputText id="adresse" value="#{clMB.client.adresse}"
+							required="true" label="Adresse" />
+						<p:message for="adresse" />
+
+
+						<h:outputLabel for="tel" value="Téléphone : "
+							style="font-weight:bold" />
+						<p:inputText id="tel" value="#{clMB.client.tel}" required="true"
+							label="Tel" />
+						<p:message for="adresse" />
+
+
+						<h:outputLabel for="mail" value="Mail : " style="font-weight:bold" />
+						<p:inputText id="mail" value="#{clMB.client.mail}" required="true"
+							label="Mail" />
+						<p:message for="mail" />
+
+
+						<h:outputLabel for="mdp" value="Mot de passe : "
+							style="font-weight:bold" />
+						<p:inputMask id="mdp" value="#{clMB.client.mdp}" required="true"
+							label="Mdp" />
+						<p:message for="mdp" />
+					</h:panelGrid>
+
+					<p:commandButton value="S'enregistrer" action="#{clMB.addClient}"
+						style="margin-right:20px" ajax="false" />
+				</p:fieldset>
+			</h:form>
+		</ui:define>
+		<ui:define name="monFooter">
+			<ui:insert>
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

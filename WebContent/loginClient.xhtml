@@ -23,10 +23,15 @@
 		<ui:define name="monBody">
 
 			<h:form>
-Mail : <h:inputText value="#{clMB.client.mail}" />
-Mot de passe : <h:inputText value="#{clMB.client.mdp}" />
+				<p:fieldset legend="Accéder à votre espace client" style="width:50%; position:relative; left:25%">
+Mail : <h:inputText value="#{clMB.client.mail}" /><br/><br/>
+Mot de passe : <h:inputText value="#{clMB.client.mdp}" /><br/><br/>
 
-				<h:commandButton value="Se connecter" action="#{clMB.isExist}" />
+					<h:commandButton value="Se connecter" action="#{clMB.isExist}" />
+					<br/><br/>
+					Vous n'avez pas encore votre espace client, cliquer ici : <br/><br/>
+					<h:commandButton value ="S'enregistrer" action="#{clMB.addLinkClient}"/>
+				</p:fieldset>
 			</h:form>
 
 		</ui:define>
