@@ -1,7 +1,12 @@
+.fieldsetStyle {
+	padding: 20px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
 .bodyStyle {
 	margin-left: 60px;
 	margin-right: 60px;
-	height: 600px;
 }
 
 .headerStyle {
@@ -14,20 +19,26 @@
 	height: 120px;
 }
 
-.image{
-	width : 60px;
-	border-radius:10%;
+.image {
+	width: 60px;
+	border-radius: 10%;
 }
 
-.image2{
-	width : 150px;
-	border-radius:10%;
+.image2 {
+	width: 150px;
+	border-radius: 10%;
 }
 
-.formStyle{
-	
-	padding:20px;
-	width:250px;
+.formStyle {
+	padding: 20px;
+	width: 250px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+@media screen and (max-width: 500px) {
+	.bodyStyle {
+		margin-left: auto;
+		margin-right: auto;
+	}
 }

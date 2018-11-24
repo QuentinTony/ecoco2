@@ -2,6 +2,7 @@ package fr.adaming.managedBeans;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -54,6 +56,9 @@ public class CommandeManagedBean implements Serializable {
 	private List<LigneCommande> listeLigneCommande;
 
 	HttpSession maSession;
+
+	@ManagedProperty(value = "#{paMB}")
+	private PanierManagedBean paMB;
 
 	// constructeur
 
@@ -106,6 +111,14 @@ public class CommandeManagedBean implements Serializable {
 
 	public void setPanier(Panier panier) {
 		this.panier = panier;
+	}
+
+	public PanierManagedBean getPaMB() {
+		return paMB;
+	}
+
+	public void setPaMB(PanierManagedBean paMB) {
+		this.paMB = paMB;
 	}
 
 	// méthodes
@@ -163,14 +176,22 @@ public class CommandeManagedBean implements Serializable {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+
 					MailClass.sendMailToCl(coIn, clOut, panier);
+
+					Panier paIn = new Panier();
+					List<LigneCommande> listeIn = new ArrayList<LigneCommande>();
+					paIn.setPrixTotal(0);
+					paIn.setListeLigneCommandes(listeIn);
 					
-					maSession.setAttribute("paSession", new Panier());
-					
+					maSession.setAttribute("paSession", paIn);
+
 					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La commande a été envoyée"));
+
+					paMB.setiPanier(false);
 					
 					return "accueilSite";
+
 				} else {
 
 					FacesContext.getCurrentInstance().addMessage(null,

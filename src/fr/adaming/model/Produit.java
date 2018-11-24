@@ -40,7 +40,7 @@ public class Produit {
 	@ManyToOne
 	@JoinColumn(name = "c_id", referencedColumnName = "id_ca")
 	private Categorie categorie;
- 
+
 	@OneToMany(mappedBy = "produit")
 	private List<LigneCommande> listeLignes;
 
@@ -55,7 +55,7 @@ public class Produit {
 
 	// -id
 	public Produit(String designation, String description, double prix, int quantite, boolean selectionne) {
-		super(); 
+		super();
 		this.designation = designation;
 		this.description = description;
 		this.prix = prix;
@@ -63,7 +63,7 @@ public class Produit {
 		this.selectionne = selectionne;
 
 	}
- 
+
 	// +id
 	public Produit(long idProduit, String designation, String description, double prix, int quantite,
 			boolean selectionne) {
@@ -172,6 +172,12 @@ public class Produit {
 		return "Produit [idProduit=" + idProduit + ", designation=" + designation + ", description=" + description
 				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo="
 				+ Arrays.toString(photo) + "]";
+	}
+
+	public boolean equalObjet(Object obj) {
+
+		return (obj instanceof Produit) && ((Produit) obj).getDesignation().equals(designation)
+				&& ((Produit) obj).getDescription().equals(description)&&((Produit) obj).getPrix()==prix;
 	}
 
 }

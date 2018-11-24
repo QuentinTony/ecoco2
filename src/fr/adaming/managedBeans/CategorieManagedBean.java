@@ -16,7 +16,9 @@ import org.primefaces.model.UploadedFile;
 
 import fr.adaming.model.Admin;
 import fr.adaming.model.Categorie;
+import fr.adaming.model.Produit;
 import fr.adaming.service.ICategorieService;
+import fr.adaming.service.IProduitService;
 
 @ManagedBean(name = "caMB")
 @RequestScoped
@@ -24,7 +26,10 @@ public class CategorieManagedBean implements Serializable {
 
 	// transformation et injection de l'asso UML en JAVA
 	@EJB
-	public ICategorieService caService;
+	private ICategorieService caService;
+
+	@EJB
+	private IProduitService prService;
 
 	private Categorie categorie;
 	private Admin admin;
@@ -68,6 +73,10 @@ public class CategorieManagedBean implements Serializable {
 		this.maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.categorie = new Categorie();
 		this.listeCategories = caService.getAllCategory();
+		for (Categorie ca : listeCategories) {
+			List<Produit> liste = prService.getProductbyCategory(ca);
+			ca.setListeProduits(liste);
+		}
 	}
 
 	public String addLinkCategory() {
@@ -131,7 +140,7 @@ public class CategorieManagedBean implements Serializable {
 		}
 
 		int verif = caService.updateCategory(this.categorie);
-		
+
 		if (verif != 0) {
 			this.listeCategories = caService.getAllCategory();
 			return "accueilAdmin";

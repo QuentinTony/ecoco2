@@ -22,30 +22,46 @@
 
 		<ui:define name="monBody">
 
-			<h:form id="tablePanier">
-				<p:dataTable var="lc"
-					value="#{sessionScope.paSession.listeLigneCommandes}">
+			<p:fieldset legend="Panier" styleClass="fieldsetStyle">
+				<h:form id="tablePanier" rendered="#{sessionScope.iPanierSession}">
+					<p:dataTable var="lc"
+						value="#{sessionScope.paSession.listeLigneCommandes}">
 
-					<p:column headerText="Produit">
-						<h:outputText value="#{lc.produit.designation}" />
-					</p:column>
+						<p:column headerText="Produit">
+							<h:outputText value="#{lc.produit.designation}" />
+						</p:column>
 
-					<p:column headerText="Quantité">
-						<h:outputText value="#{lc.quantite}" />
-					</p:column>
+						<p:column headerText="Quantité">
+							<h:outputText value="#{lc.quantite}" />
+						</p:column>
 
-					<p:column headerText="Prix">
-						<h:outputText value="#{lc.prix}" />
-					</p:column>
+						<p:column headerText="Prix">
+							<h:outputText value="#{lc.prix}€" />
+						</p:column>
 
-				</p:dataTable>
-			</h:form>
+						<p:column>
+							<p:commandLink action="#{paMB.deleteLigne}" ajax="false"
+								title="Supprimer cette ligne de commande">
+								<h:graphicImage value="resources/images/Trash Can_26px.png"></h:graphicImage>
+								<f:setPropertyActionListener value="#{lc}"
+									target="#{paMB.lcDelete}"></f:setPropertyActionListener>
+							</p:commandLink>
+						</p:column>
 
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Prix total du panier : " for="prixtotal" />
-				<h:outputText id="prixtotal"
-					value="#{sessionScope.paSession.prixTotal}" />
-			</h:panelGrid>
+					</p:dataTable>
+					<br />
+					<h:panelGrid columns="3">
+						<p:outputLabel value="Prix total du panier : " for="prixtotal" />
+						<h:outputText id="prixtotal"
+							value="#{sessionScope.paSession.prixTotal}€" />
+						<h:commandButton value="Passer la commande"
+							action="#{coMB.passerCommande1}" />
+
+					</h:panelGrid>
+
+				</h:form>
+			</p:fieldset>
+			<br />
 
 			<h:form id="tablePdt">
 				<p:dataTable var="" value="">

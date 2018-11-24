@@ -37,6 +37,10 @@ public class PanierManagedBean {
 
 	private int quantite;
 
+	private LigneCommande lcDelete;
+
+	private boolean iPanier;
+
 	HttpSession maSession;
 
 	// constructeur
@@ -51,18 +55,19 @@ public class PanierManagedBean {
 		Panier pOut = (Panier) maSession.getAttribute("paSession");
 		if (pOut != null) {
 			this.panier = pOut;
-			
+
 		} else {
-			
+
 			List<LigneCommande> liste = new ArrayList<LigneCommande>();
-			
+
 			this.panier = new Panier();
 			panier.setListeLigneCommandes(liste);
-			
+
 			maSession.setAttribute("paSession", panier);
 		}
 		this.produit = new Produit();
-	
+
+		maSession.setAttribute("iPanierSession", iPanier);
 	}
 
 	// getter setter
@@ -91,6 +96,22 @@ public class PanierManagedBean {
 		this.quantite = quantite;
 	}
 
+	public LigneCommande getLcDelete() {
+		return lcDelete;
+	}
+
+	public void setLcDelete(LigneCommande lcDelete) {
+		this.lcDelete = lcDelete;
+	}
+
+	public boolean getiPanier() {
+		return iPanier;
+	}
+
+	public void setiPanier(boolean iPanier) {
+		this.iPanier = iPanier;
+	}
+
 	// méthodes
 
 	public void vQuantite(FacesContext context, UIComponent composant, Object valeur) throws ValidatorException {
@@ -104,7 +125,7 @@ public class PanierManagedBean {
 
 			if (!nb.contains(test)) {
 				throw new ValidatorException(new FacesMessage("La quantité est un nombre !"));
-			} 
+			}
 		}
 
 	}
@@ -113,16 +134,123 @@ public class PanierManagedBean {
 
 		LigneCommande lc = new LigneCommande(quantite, produit.getPrix() * quantite);
 		lc.setProduit(produit);
-
 		List<LigneCommande> liste = panier.getListeLigneCommandes();
-		liste.add(lc);
-		panier.setListeLigneCommandes(liste);
-		panier.setPrixTotal(panier.getPrixTotal()+lc.getPrix());
-		
-		maSession.setAttribute("paSession", this.panier);
+		LigneCommande lcErreur = new LigneCommande();
 
-		return "afficherProduits";
+		int i = 0;
+		boolean modif = false;
+		for (LigneCommande lcElem : liste) {
+			if (lc.getProduit().equalObjet(lcElem.getProduit())) {
+				lcErreur = new LigneCommande(lcElem.getQuantite(), lcElem.getPrix());
+				lcErreur.setProduit(lcElem.getProduit());
+				
+				lc.setPrix(lc.getPrix() + lcElem.getPrix());
+				lc.setQuantite(lc.getQuantite() + lcElem.getQuantite());
+
+				System.out.println(lc.getQuantite());
+
+				liste.set(i, lc);
+				modif = true;
+				System.out.println(modif);
+				break;
+			}
+
+			i++;
+		}
+
+		System.out.println(modif);
+
+		if (modif == false) {
+			liste.add(lc);
+		}
+
+		if (lc.getProduit().getQuantite() >= lc.getQuantite()) {
+			System.out.println("stock : " + lc.getProduit().getQuantite());
+			System.out.println("dans la future ligne :" + lc.getQuantite());
+
+			panier.setListeLigneCommandes(liste);
+
+			double prixTot = 0;
+			for (LigneCommande lcElem : liste) {
+				prixTot = prixTot + lcElem.getPrix();
+			}
+
+			panier.setPrixTotal(prixTot);
+
+			maSession.setAttribute("paSession", this.panier);
+
+			return this.afficherProduits();
+
+		} else {
+
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Erreur ! Le stock de ce produit est de : " + lc.getProduit().getQuantite()
+							+ "\nDéjà " + lc.getQuantite() + " dans votre panier !"));
+
+			liste.set(i, lcErreur);
+			System.out.println(liste);
+			System.out.println(lcErreur);
+			
+			double prixTot = 0;
+			for (LigneCommande lcElem : liste) {
+				prixTot = prixTot + lcElem.getPrix();
+			}
+
+			panier.setListeLigneCommandes(liste);
+			panier.setPrixTotal(prixTot);
+
+			maSession.setAttribute("paSession", this.panier);
+
+			return this.afficherProduits();
+		}
 
 	}
 
+	public String deleteLigne() {
+
+		List<LigneCommande> lcIn = panier.getListeLigneCommandes();
+		for (LigneCommande lc : lcIn) {
+			if (lc.getPrix() == lcDelete.getPrix() && lc.getQuantite() == lcDelete.getQuantite()
+					&& lc.getProduit().getDesignation().equals(lcDelete.getProduit().getDesignation())) {
+				lcIn.remove(lc);
+				break;
+			}
+		}
+		panier.setListeLigneCommandes(lcIn);
+
+		double prixTot = 0;
+		for (LigneCommande lcElem : lcIn) {
+			prixTot = prixTot + lcElem.getPrix();
+		}
+
+		panier.setPrixTotal(prixTot);
+
+		maSession.setAttribute("paSession", panier);
+
+		return this.afficherAccueil();
+	}
+
+	public String afficherAccueil() {
+		if (panier.getListeLigneCommandes().isEmpty()) {
+			setiPanier(false);
+		} else {
+			setiPanier(true);
+		}
+
+		maSession.setAttribute("iPanierSession", iPanier);
+
+		return "accueilSite";
+	}
+
+	public String afficherProduits() {
+		if (panier.getListeLigneCommandes().isEmpty()) {
+			setiPanier(false);
+		} else {
+			setiPanier(true);
+		}
+
+		maSession.setAttribute("iPanierSession", iPanier);
+
+		return "afficherProduits";
+	}
 }
