@@ -57,9 +57,6 @@ public class CommandeManagedBean implements Serializable {
 
 	HttpSession maSession;
 
-	@ManagedProperty(value = "#{paMB}")
-	private PanierManagedBean paMB;
-
 	// constructeur
 
 	public CommandeManagedBean() {
@@ -111,14 +108,6 @@ public class CommandeManagedBean implements Serializable {
 
 	public void setPanier(Panier panier) {
 		this.panier = panier;
-	}
-
-	public PanierManagedBean getPaMB() {
-		return paMB;
-	}
-
-	public void setPaMB(PanierManagedBean paMB) {
-		this.paMB = paMB;
 	}
 
 	// méthodes
@@ -173,12 +162,23 @@ public class CommandeManagedBean implements Serializable {
 					try {
 						PdfClass.createPdf(coIn, clOut, panier);
 					} catch (IOException | DocumentException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 
 					MailClass.sendMailToCl(coIn, clOut, panier);
-
+					
+					for(LigneCommande lc : listeLigneCommande) {
+						Client clIn = lc.getProduit().getClient();
+						try {
+							PdfClass.createPdf(coIn, clOut, lc);
+						} catch (IOException | DocumentException e) {
+							
+							e.printStackTrace();
+						}
+						MailClass.sendMailToClVente(coIn, clIn, lc);
+					}
+					
 					Panier paIn = new Panier();
 					List<LigneCommande> listeIn = new ArrayList<LigneCommande>();
 					paIn.setPrixTotal(0);
@@ -187,8 +187,6 @@ public class CommandeManagedBean implements Serializable {
 					maSession.setAttribute("paSession", paIn);
 
 					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La commande a été envoyée"));
-
-					paMB.setiPanier(false);
 					
 					return "accueilSite";
 

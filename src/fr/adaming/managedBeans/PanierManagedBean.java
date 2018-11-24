@@ -39,8 +39,6 @@ public class PanierManagedBean {
 
 	private LigneCommande lcDelete;
 
-	private boolean iPanier;
-
 	HttpSession maSession;
 
 	// constructeur
@@ -67,7 +65,6 @@ public class PanierManagedBean {
 		}
 		this.produit = new Produit();
 
-		maSession.setAttribute("iPanierSession", iPanier);
 	}
 
 	// getter setter
@@ -104,14 +101,6 @@ public class PanierManagedBean {
 		this.lcDelete = lcDelete;
 	}
 
-	public boolean getiPanier() {
-		return iPanier;
-	}
-
-	public void setiPanier(boolean iPanier) {
-		this.iPanier = iPanier;
-	}
-
 	// méthodes
 
 	public void vQuantite(FacesContext context, UIComponent composant, Object valeur) throws ValidatorException {
@@ -143,7 +132,7 @@ public class PanierManagedBean {
 			if (lc.getProduit().equalObjet(lcElem.getProduit())) {
 				lcErreur = new LigneCommande(lcElem.getQuantite(), lcElem.getPrix());
 				lcErreur.setProduit(lcElem.getProduit());
-				
+
 				lc.setPrix(lc.getPrix() + lcElem.getPrix());
 				lc.setQuantite(lc.getQuantite() + lcElem.getQuantite());
 
@@ -190,7 +179,7 @@ public class PanierManagedBean {
 			liste.set(i, lcErreur);
 			System.out.println(liste);
 			System.out.println(lcErreur);
-			
+
 			double prixTot = 0;
 			for (LigneCommande lcElem : liste) {
 				prixTot = prixTot + lcElem.getPrix();
@@ -231,25 +220,15 @@ public class PanierManagedBean {
 	}
 
 	public String afficherAccueil() {
-		if (panier.getListeLigneCommandes().isEmpty()) {
-			setiPanier(false);
-		} else {
-			setiPanier(true);
-		}
 
-		maSession.setAttribute("iPanierSession", iPanier);
+		quantite = 0;
 
 		return "accueilSite";
 	}
 
 	public String afficherProduits() {
-		if (panier.getListeLigneCommandes().isEmpty()) {
-			setiPanier(false);
-		} else {
-			setiPanier(true);
-		}
 
-		maSession.setAttribute("iPanierSession", iPanier);
+		quantite = 0;
 
 		return "afficherProduits";
 	}

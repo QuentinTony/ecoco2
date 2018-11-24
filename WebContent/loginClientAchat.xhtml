@@ -23,18 +23,27 @@
 		<ui:define name="monBody">
 
 			<div class="formStyle">
-				<h:form>
-					<h:panelGrid columns="1" cellspacing="10">
-						<p:outputLabel value="Mail" />
-						<p:inputText value="#{coMB.client.mail}" />
-						<p:outputLabel value="Mot de passe" />
-						<p:inputText value="#{coMB.client.mdp}" />
+				<p:fieldset legend="Identifiez vous" style="padding:10px;border:1px solid darkgrey">
+					<h:form>
+						<h:panelGrid columns="1" cellspacing="10">
+							<p:outputLabel value="Mail" />
+							<p:inputText value="#{coMB.client.mail}" />
+							<p:outputLabel value="Mot de passe" />
+							<p:inputText value="#{coMB.client.mdp}" />
 
-						<p:commandButton value="S'identifier"
-							action="#{coMB.passerCommande}" update="@all" />
-					</h:panelGrid>
+							<p:commandButton value="S'identifier"
+								action="#{coMB.passerCommande}" update="@all" />
+							<br />
+							<br />
+						Vous n'avez pas encore votre espace client, cliquer ici : 
+							<br />
+							<br />
+							<h:commandButton value="S'enregistrer"
+								action="#{clMB.addLinkClient}" />
+						</h:panelGrid>
 
-				</h:form>
+					</h:form>
+				</p:fieldset>
 			</div>
 		</ui:define>
 

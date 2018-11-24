@@ -13,7 +13,9 @@ public class ValidatorAddPanier implements Validator{
 	@Override
 	public void validate(FacesContext context, UIComponent composant, Object valeur) throws ValidatorException {
 		
-		String saisie = (String) valeur;
+		int saisie1 = (Integer) valeur;
+		String saisie = Integer.toString(saisie1);
+		System.out.println(saisie);
 		int longueur = saisie.length();
 		String nb = "01234565789";
 		

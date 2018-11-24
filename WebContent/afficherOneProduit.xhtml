@@ -23,7 +23,8 @@
 		<ui:define name="monBody">
 
 			<p:fieldset legend="Panier" styleClass="fieldsetStyle">
-				<h:form id="tablePanier" rendered="#{sessionScope.iPanierSession}">
+				<h:form id="tablePanier"
+					rendered="#{not empty sessionScope.paSession.listeLigneCommandes}">
 					<p:dataTable var="lc"
 						value="#{sessionScope.paSession.listeLigneCommandes}">
 
@@ -63,48 +64,43 @@
 			</p:fieldset>
 			<br />
 
-			<h:form id="tablePdt">
-				<p:dataTable var="" value="">
+			<h:form id="tableCat">
 
-					<p:column headerText="ID">
-						<h:outputText value="#{sessionScope.prSession.idProduit}" />
-					</p:column>
+				<p:panel style="text-align:center;padding:10px;">
+					<h:panelGrid style="width:100%;" columns="3">
+						<h:panelGroup>
+							<h:graphicImage value="#{sessionScope.prSession.image}"
+								styleClass="image3" />
+							<p style="color: blue; text-decoration: underline;">
+								<B>#{sessionScope.prSession.designation}</B>
+							</p>
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:outputText value="#{sessionScope.prSession.description}" />
+							<br />
+							<hr />
+							<h:outputText value="Stock : #{sessionScope.prSession.quantite}" />
+							<br />
+							<h:outputText value="Prix : #{sessionScope.prSession.prix}€" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:commandButton image="resources/images/addProduit.png"
+								action="#{paMB.addToPanier}" title="ajouter au panier">
+								<f:setPropertyActionListener value="#{sessionScope.prSession}"
+									target="#{paMB.produit}"></f:setPropertyActionListener>
+							</h:commandButton>
+							<br />
+							<p:spinner id="basic" value="#{paMB.quantite}"
+								max="#{sessionScope.prSession.quantite}" min="0" size="1"
+								maxlength="3">
+								<f:validator validatorId="vAddPanier" />
+							</p:spinner>
+							<br/>
+							<p:message for="basic"/>
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:panel>
 
-					<p:column headerText="Nom">
-						<h:outputText value="#{sesionScope.prSession.designation}" />
-					</p:column>
-
-					<p:column headerText="Description">
-						<h:outputText value="#{sessionScope.prSession.description}" />
-					</p:column>
-
-					<p:column headerText="Prix">
-						<h:outputText value="#{sessionScope.prSession.prix}" />
-					</p:column>
-
-					<p:column headerText="Stock">
-						<h:outputText value="#{sessionScope.prSession.quantite}" />
-					</p:column>
-
-					<p:column headerText="Photo">
-						<h:outputText value="#{sessionScope.prSession.photo}" />
-					</p:column>
-
-					<p:column>
-
-						<h:commandButton image="resources/images/addProduit.png"
-							action="#{paMB.addToPanier}">
-							<f:setPropertyActionListener value="#{sessionScope.prSession}"
-								target="#{paMB.produit}"></f:setPropertyActionListener>
-						</h:commandButton>
-
-						<p:spinner id="basic" value="#{paMB.quantite}"
-							max="#{sessionScope.prSession.quantite}" min="0" size="1">
-						</p:spinner>
-
-					</p:column>
-
-				</p:dataTable>
 			</h:form>
 
 		</ui:define>

@@ -22,7 +22,8 @@
 
 		<ui:define name="monBody">
 			<p:fieldset legend="Panier" styleClass="fieldsetStyle">
-				<h:form id="tablePanier" rendered="#{sessionScope.iPanierSession}">
+				<h:form id="tablePanier"
+					rendered="#{not empty sessionScope.paSession.listeLigneCommandes}">
 					<p:dataTable var="lc"
 						value="#{sessionScope.paSession.listeLigneCommandes}">
 
@@ -63,7 +64,7 @@
 			<br />
 			<h:form id="tableCat">
 				<p:dataGrid id="dataTableCategories" var="cat"
-					value="#{caMB.listeCategories}" columns="3" layout="grid">
+					value="#{caMB.listeCategories}" columns="3" layout="grid" rows="6" paginator="true">
 					<f:facet name="header">
 Catégories        </f:facet>
 
@@ -76,8 +77,8 @@ Catégories        </f:facet>
 								<f:setPropertyActionListener value="#{cat}"
 									target="#{pMB.categorie}"></f:setPropertyActionListener>
 							</p:commandLink>
-							
-							<h:outputText value="#{cat.listeProduits.size()} produits"/>
+
+							<h:outputText value="#{cat.listeProduits.size()} produits" />
 						</h:panelGrid>
 					</p:panel>
 
