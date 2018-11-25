@@ -25,7 +25,8 @@
 			<h:graphicImage id="togglePanier"
 				value="resources/images/togglePanier.png" onclick="togglePanier()"
 				onmouseover="animImgPanier()" onmouseout="animImgPanier1()"
-				title="Afficher/Cacher le panier" style="position:absolute; left:12%; top:35%" />
+				title="Afficher/Cacher le panier"
+				style="position:absolute; left:12%; top:35%" />
 			<p:fieldset legend="Panier" styleClass="fieldsetStyle" id="panier">
 				<h:form id="tablePanier"
 					rendered="#{not empty sessionScope.paSession.listeLigneCommandes}">
@@ -68,11 +69,14 @@
 			</p:fieldset>
 			<br />
 			<h:form>
-				<h:panelGrid columns="2">
-					<p:inputText value="#{pMB.saisie}"
-						placeholder="Rechercher un produit" />
+				<h:panelGrid columns="3">
+					<p:outputLabel value="Prix minimum" />
+					<p:outputLabel value="Prix maximum" />
+					<p:outputLabel />
+					<p:spinner value="#{pMB.prix1}"></p:spinner>
+					<p:spinner value="#{pMB.prix2}"></p:spinner>
 					<h:commandButton image="resources/images/Search_26px.png"
-						action="#{pMB.getProductbySaisie}" />
+						action="#{pMB.getProductbyPrix}" />
 				</h:panelGrid>
 			</h:form>
 			<br />
@@ -82,7 +86,7 @@
 					value="#{sessionScope.listeProduitsSession}" columns="5"
 					layout="grid" rows="15" paginator="true">
 					<f:facet name="header">
-Liste des produits incluant dont le prix est compris entre #{pMB.prix1} et #{pMB.prix2}  </f:facet>
+Liste des produits dont le prix est compris entre #{pMB.prix1}€ et #{pMB.prix2}€  </f:facet>
 
 					<p:panel style="text-align:center;padding:10px;">
 						<h:panelGrid style="width:100%;" columns="1">
@@ -104,11 +108,12 @@ Liste des produits incluant dont le prix est compris entre #{pMB.prix1} et #{pMB
 					</p:panel>
 
 				</p:dataGrid>
-				
-				<br/>
-				<br/>
-								<p:commandButton id="btonret" action="accueilSite.xhmtl" value="Retour à l'accueil"></p:commandButton>
-				
+
+				<br />
+				<br />
+				<p:commandButton id="btonret" action="accueilSite.xhmtl"
+					value="Retour à l'accueil"></p:commandButton>
+
 			</h:form>
 
 		</ui:define>

@@ -168,8 +168,8 @@ public class PanierManagedBean {
 		} else {
 
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Erreur ! Le stock de ce produit est de : " + lc.getProduit().getQuantite()
-							+ "\nDéjà " + lc.getQuantite() + " dans votre panier !"));
+					new FacesMessage("Erreur ! Le stock de ce produit est de : " + lcErreur.getProduit().getQuantite()
+							+ "\nDéjà " + lcErreur.getQuantite() + " dans votre panier !"));
 
 			liste.set(i, lcErreur);
 

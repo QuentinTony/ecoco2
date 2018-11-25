@@ -15,7 +15,7 @@ public class ValidatorAddPanier implements Validator{
 		
 		int saisie1 = (Integer) valeur;
 		String saisie = Integer.toString(saisie1);
-		System.out.println(saisie);
+
 		int longueur = saisie.length();
 		String nb = "01234565789";
 		

@@ -112,7 +112,7 @@ public class ClientManagedBean implements Serializable {
 
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Identifiants invalides"));
 
-			return "accueilSite";
+			return "loginClient";
 
 		}
 	}

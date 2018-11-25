@@ -46,10 +46,13 @@ public class ClientDaoImpl implements IClientDao {
 
 	@Override
 	public Client getClient(Client cl) {
+		try {
+			Client clOut = em.find(Client.class, cl.getId());
+			return clOut;
+		} catch (Exception e) {
+			return null;
+		}
 
-		Client clOut = em.find(Client.class, cl.getId());
-
-		return clOut;
 	}
 
 	@Override
@@ -59,11 +62,14 @@ public class ClientDaoImpl implements IClientDao {
 		String req = "SELECT cl FROM Client as cl WHERE cl.mail=:pMail AND cl.mdp=:pMdp";
 
 		// création du query
-
-		Query query = em.createQuery(req);
-		query.setParameter("pMail", cl.getMail());
-		query.setParameter("pMdp", cl.getMdp());
-		return (Client) query.getSingleResult();
+		try {
+			Query query = em.createQuery(req);
+			query.setParameter("pMail", cl.getMail());
+			query.setParameter("pMdp", cl.getMdp());
+			return (Client) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }
