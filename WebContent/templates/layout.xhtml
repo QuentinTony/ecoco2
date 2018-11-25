@@ -25,11 +25,19 @@
 
 		<p:menubar styleClass="menubar">
 
-			<p:menuitem styleClass="menuitem" value="Accueil" action="#{paMB.afficherAccueil}"/>
+			<p:menuitem styleClass="menuitem" value="Accueil"
+				action="#{paMB.afficherAccueil}" id="acc" />
 
-			<p:menuitem styleClass="menuitem" value="Espace Client" url="loginClient.xhtml" />
+			<p:menuitem styleClass="menuitem" value="Liste Articles"
+				url="getAllProducts.xhtml" id="prd" />
 
-			<p:menuitem styleClass="menuitem" value="Espace Admin" url="loginAdmin.xhtml" />
+			<p:menuitem styleClass="menuitem" value="Espace Client"
+				url="loginClient.xhtml" id="cli" />
+
+			<p:menuitem styleClass="menuitem" value="Espace Admin"
+				url="loginAdmin.xhtml" id="adm" />
+
+
 
 			<f:facet name="categories">
 				<p:selectOneMenu value="#{caMB.categorie.idCategorie}">
@@ -37,8 +45,14 @@
 						itemLabel="#{cat.nom}" itemValue="#{cat.idCategorie}" />
 				</p:selectOneMenu>
 			</f:facet>
-
-
+			<p:menuitem id="searchbar" style="position: relative; left:240%;">
+				<p:inputText value="#{pMB.saisie}"
+					placeholder="Rechercher un produit" />
+				<h:commandLink action="#{pMB.getProductbySaisie}"
+					style="position:relative; left:233%;">
+					<h:graphicImage library="images" name="Search_26px.png" />
+				</h:commandLink>
+			</p:menuitem>
 		</p:menubar>
 
 	</h:form>

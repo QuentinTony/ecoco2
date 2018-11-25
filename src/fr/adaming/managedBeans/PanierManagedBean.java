@@ -12,6 +12,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.event.ToggleEvent;
+
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Produit;
@@ -144,7 +146,6 @@ public class PanierManagedBean {
 			i++;
 		}
 
-
 		if (modif == false) {
 			liste.add(lc);
 		}
@@ -223,5 +224,11 @@ public class PanierManagedBean {
 		quantite = 0;
 
 		return "afficherProduits";
+	}
+
+	public void handleToggle(ToggleEvent event) {
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Toggled",
+				"Visibility:" + event.getVisibility());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 }

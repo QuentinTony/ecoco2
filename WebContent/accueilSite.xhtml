@@ -24,7 +24,7 @@
 			<h:graphicImage id="togglePanier"
 				value="resources/images/togglePanier.png" onclick="togglePanier()"
 				onmouseover="animImgPanier()" onmouseout="animImgPanier1()"
-				title="Afficher/Cacher le panier" />
+				title="Afficher/Cacher le panier" style="position:absolute; left:12%; top:35%"/>
 			<p:fieldset legend="Panier" styleClass="fieldsetStyle" id="panier">
 				<h:form id="tablePanier"
 					rendered="#{not empty sessionScope.paSession.listeLigneCommandes}">
@@ -54,11 +54,12 @@
 
 					</p:dataTable>
 					<br />
-					<h:panelGrid columns="3">
+					<h:panelGrid columns="3" style="font-size:100%;">
 						<p:outputLabel value="Prix total du panier : " for="prixtotal" />
 						<h:outputText id="prixtotal"
 							value="#{sessionScope.paSession.prixTotal}€" />
-						<h:commandButton value="Passer la commande"
+							<br/>
+						<p:commandButton id="bton" value="Passer la commande"
 							action="#{coMB.passerCommande1}" />
 
 					</h:panelGrid>
@@ -67,12 +68,7 @@
 			</p:fieldset>
 			<br />
 			<h:form>
-				<h:panelGrid columns="2">
-					<p:inputText value="#{pMB.saisie}"
-						placeholder="Rechercher un produit" />
-					<h:commandButton image="resources/images/Search_26px.png"
-						action="#{pMB.getProductbySaisie}" />
-				</h:panelGrid>
+				
 				<h:panelGrid columns="3" >
 					<p:outputLabel value="Prix minimum" />
 					<p:outputLabel value="Prix maximum" />

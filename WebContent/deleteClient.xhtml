@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Bienvenue dans votre espace client.</title>
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+
+		<ui:define name="monHeader">
+			<ui:insert>
+				<ui:include src="/templates/header.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+		<ui:define name="monBody">
+			<h:form>
+
+				<p:dataTable var="" value="">
+					p:dataTable var="" value="">
+<h:inputHidden value="#{sessionScope.clSession.id}" />
+					<p:column headerText="Nom">
+						<h:outputText value="#{sessionScope.clSession.nom}" />
+					</p:column>
+					<p:column headerText="Adresse">
+						<h:outputText value="#{sessionScope.clSession.adresse}" />
+					</p:column>
+					<p:column headerText="Mail">
+						<h:outputText value="#{sessionScope.clSession.mail}" />
+					</p:column>
+					<p:column headerText="Mot de passe" rendered="false">
+						<h:outputText value="#{sessionScope.clSession.mdp}" />
+					</p:column>
+					<p:column headerText="Téléphone">
+						<h:outputText value="#{sessionScope.clSession.tel}" />
+					</p:column>
+				</p:dataTable>
+				<br />
+				<br />
+				<h1>Etes-vous certain(e) de nous quitter?</h1>
+				<p:commandButton value="Oui, je souhaite supprimer mon compte"
+					action="#{clMB.deleteClient}"
+					style="margin-right:20px; position:relative;left:45%;width:10% ">
+					<f:setPropertyActionListener value="#{sessionScope.clSession.id}"
+						target="#{clMB.client.id}" />
+				</p:commandButton>
+
+
+				<p:commandButton
+					value="Non, je ne souhaite pas supprimer mon compte"
+					action="accueilClient.xhtml"
+					style="margin-right:20px; position:relative;left:45%;width:10% ">
+
+				</p:commandButton>
+				<br />
+				<br />
+				<p:commandButton value="Déconnexion" action="#{clMB.deconnexion}"
+					style="margin-right:20px; position:relative;left:45%;" ajax="false">
+
+				</p:commandButton>
+
+
+
+
+			</h:form>
+
+
+		</ui:define>
+
+
+		<ui:define name="monFooter">
+			<ui:insert>
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+
+	</ui:composition>
+
+
+</h:body>
+
+</html>

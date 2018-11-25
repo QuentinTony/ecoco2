@@ -34,7 +34,7 @@ public class ClientServiceImpl implements IClientService {
 		Client clOut = this.getClient(cl);
 		clOut.setId(cl.getId());
 		clOut.setAdresse(cl.getAdresse());
-		clOut.setListeCommandes(cl.getListeCommandes());
+//		clOut.setListeCommandes(cl.getListeCommandes());
 		clOut.setMail(cl.getMail());
 		clOut.setMdp(cl.getMdp());
 		clOut.setNom(cl.getNom());

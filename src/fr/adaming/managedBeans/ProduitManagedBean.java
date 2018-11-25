@@ -32,6 +32,7 @@ public class ProduitManagedBean implements Serializable {
 	private String saisie;
 	private double prix1;
 	private double prix2;
+	private List<Produit> listeProduit;
 
 	// constructeur vide
 	public ProduitManagedBean() {
@@ -92,6 +93,14 @@ public class ProduitManagedBean implements Serializable {
 		this.saisie = saisie;
 	}
 
+	public List<Produit> getListeProduit() {
+		return listeProduit;
+	}
+
+	public void setListeProduit(List<Produit> listeProduit) {
+		this.listeProduit = listeProduit;
+	}
+
 	// methode
 	@PostConstruct
 	public void initClient() {
@@ -99,6 +108,7 @@ public class ProduitManagedBean implements Serializable {
 		this.client = (Client) maSession.getAttribute("clSession");
 		this.produit = new Produit();
 		this.categorie = new Categorie();
+		
 	}
 
 	public String afficherProduit() {
@@ -246,6 +256,17 @@ public class ProduitManagedBean implements Serializable {
 
 	public String espaceclient() {
 		return "accueilClient";
+	}
+	
+	public String getAllProducts() {
+		List<Produit> listeOut=pService.getAllProducts();
+		if(listeOut!=null) {
+			this.listeProduit=listeOut;
+						return "getAllProducts";
+		}else {FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche n'a pas aboutie"));
+		return "accueilSite";
+			
+		}
 	}
 
 }

@@ -25,7 +25,7 @@
 			<h:graphicImage id="togglePanier"
 				value="resources/images/togglePanier.png" onclick="togglePanier()"
 				onmouseover="animImgPanier()" onmouseout="animImgPanier1()"
-				title="Afficher/Cacher le panier" />
+				title="Afficher/Cacher le panier"  style="position:absolute; left:12%; top:35%"/>
 			<p:fieldset legend="Panier" styleClass="fieldsetStyle" id="panier">
 				<h:form id="tablePanier"
 					rendered="#{not empty sessionScope.paSession.listeLigneCommandes}">
@@ -104,6 +104,11 @@ Liste des produits incluant "#{pMB.saisie}"  </f:facet>
 					</p:panel>
 
 				</p:dataGrid>
+				<br />
+				<br />
+				<p:commandButton id="btonret" action="accueilSite.xhmtl"
+					value="Retour à l'accueil"></p:commandButton>
+
 			</h:form>
 
 		</ui:define>

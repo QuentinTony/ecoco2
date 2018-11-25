@@ -34,5 +34,8 @@ public interface IProduitService {
 	public List<Produit> getProductbyCatAndString(String saisie, Categorie ca);
 
 	public List<Produit> getProductbyClAndString(String saisie, Client cl);
+	
+	public List<Produit> getAllProducts();
+
 
 }

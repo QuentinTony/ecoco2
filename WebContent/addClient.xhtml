@@ -20,7 +20,7 @@
 		</ui:define>
 
 		<ui:define name="monBody">
-			<h:form enctype="multipart/form-data">
+			<h:form >
 
 				<p:fieldset legend="S'enregistrer"
 					style="width:42%; position:relative; left:29%">
@@ -43,7 +43,7 @@
 							style="font-weight:bold" />
 						<p:inputText id="tel" value="#{clMB.client.tel}" required="true"
 							label="Tel" />
-						<p:message for="adresse" />
+						<p:message for="tel" />
 
 
 						<h:outputLabel for="mail" value="Mail : " style="font-weight:bold" />

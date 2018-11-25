@@ -20,10 +20,10 @@
 
 		<ui:define name="monBody">
 			<h:form>
-				<h1>Bienvenue dans votre espace client.</h1>
+				<h1 style="font-family: Arial">Bienvenue #{sessionScope.clSession.nom} dans votre espace client.</h1>
 				<br />
 				<p:dataTable var="" value="">
-
+<h:inputHidden value="#{sessionScope.clSession.id}" />
 					<p:column headerText="Nom">
 						<h:outputText value="#{sessionScope.clSession.nom}" />
 					</p:column>
@@ -56,9 +56,9 @@
 			<h:form>
 				<h:panelGrid columns="2">
 					<p:inputText value="#{pMB.saisie}"
-						placeholder="Rechercher un produit" />
+						placeholder="Rechercher un produit dans votre liste" style="width:150%;"/>
 					<h:commandButton image="resources/images/Search_26px.png"
-						action="#{pMB.getProductbyClAndSaisie}" />
+						action="#{pMB.getProductbyClAndSaisie}" style="position:absolute; left: 30%" />
 				</h:panelGrid>
 			</h:form>
 			<br />

@@ -1,18 +1,3 @@
-.fieldsetStyle {
-	padding: 20px;
-	font-size: 150%;
-	border: 3px solid Darkblue;
-	border-radius: 15px;
-}
-
-.fieldsetStyle .ui-state-default {
-	padding: 20px;
-	font-family: Arial;
-	border: 3px solid Darkblue;
-	border-radius: 15px;
-	background: CornflowerBlue;
-}
-
 .bodyStyle {
 	margin-left: 60px;
 	margin-right: 60px;
@@ -125,7 +110,7 @@
 }
 
 .ui-menubar, .ui-menu-child, .ui-menu {
-	background-color: darkblue !important;
+	background-color: red !important;
 	border: 3px solid darkblue !important;
 	border-radius: 10px;
 }
@@ -162,10 +147,12 @@
 }
 
 .ui-datagrid-header {
-	background-color: CornflowerBlue !important;
+	background-color: red !important;
+	color: white ! important;
 	border: 2px solid darkblue !important;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
+	border: 2px solid darkblue !important;
 }
 
 .ui-panel-titlebar {
@@ -195,10 +182,17 @@
 	border-radius: 10px;
 }
 
-.ui-state-default {
-	border: 1px solid darkblue !important;
+th  {
+	background-color: red !important;
+	color: white !important;
 }
 
-.ui-widget-content {
-	border: 1px solid darkblue !important;
+.ui-datatable-header  {
+	background-color: red !important;
+	color: white ! important;
+	border: 2px solid darkblue !important;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border: 2px solid darkblue !important;
 }
+

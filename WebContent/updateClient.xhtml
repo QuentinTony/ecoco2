@@ -9,28 +9,29 @@
 <h:head>
 	<title>Ajouter un client</title>
 </h:head>
-		<h:body>
-<ui:composition template="/templates/layout.xhtml">
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
 
-	<ui:define name="monHeader">
-		<ui:insert>
-			<ui:include src="/templates/header.xhtml"></ui:include>
-		</ui:insert>
-	</ui:define>
+		<ui:define name="monHeader">
+			<ui:insert>
+				<ui:include src="/templates/header.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
 
-	<ui:define name="monBody">
+		<ui:define name="monBody">
 
 
-		<h:form enctype="multipart/form-data">
+			<h:form>
 
 				<p:fieldset legend="Modifier mes informations"
 					style="width:42%; position:relative; left:29%">
-					<h:panelGrid id="grid" columns="3" >
+					<h:panelGrid id="grid" columns="3">
+						<h:inputHidden value="#{clMB.client.id}" />
 						<h:outputLabel for="name" value="Nom : " style="font-weight:bold" />
 						<p:inputText id="name" value="#{clMB.client.nom}" required="true"
 							label="Name" />
 						<p:message for="name" />
-						
+
 						<h:outputLabel for="adresse" value="Adresse : "
 							style="font-weight:bold" />
 						<p:inputText id="adresse" value="#{clMB.client.adresse}"
@@ -42,7 +43,7 @@
 							style="font-weight:bold" />
 						<p:inputText id="tel" value="#{clMB.client.tel}" required="true"
 							label="Tel" />
-						<p:message for="adresse" />
+						<p:message for="tel" />
 
 
 						<h:outputLabel for="mail" value="Mail : " style="font-weight:bold" />
@@ -53,29 +54,39 @@
 
 						<h:outputLabel for="mdp1" value="Mot de passe : "
 							style="font-weight:bold" />
-						<p:password id="mdp1" match="mdp2" value="#{clMB.client.mdp}" required="true"
-							label="Mdp1" />
+						<p:password id="mdp1" match="mdp2" value="#{clMB.client.mdp}"
+							required="true" label="Mdp1" />
 						<p:message for="mdp1" />
-						
+
 						<h:outputLabel for="mdp2" value="Retapez votre mot de passe : "
 							style="font-weight:bold" />
-						<p:password id="mdp2" value="#{clMB.client.mdp}" required="true"
-							label="Mdp2" />
+						<p:password id="mdp2" required="true" label="Mdp2" />
 						<p:message for="mdp2" />
 					</h:panelGrid>
 
-					<p:commandButton value="Modifier mes informations" action="#{clMB.updateClient}"
-						style="margin-right:20px" ajax="false" />
+					<p:commandButton value="Modifier mes informations"
+						action="#{clMB.updateClient}" style="margin-right:20px"
+						ajax="false" />
+
 				</p:fieldset>
+				<br />
+				<br />
+
 			</h:form>
 
-	</ui:define>
+			<h:form>
+				<p:commandButton value="Supprimer mon compte"
+					action="#{clMB.deleteLinkClient}" style="margin-right:20px"
+					ajax="false" />
+			</h:form>
 
-	<ui:define name="monFooter">
-		<ui:insert>
-			<ui:include src="/templates/footer.xhtml"></ui:include>
-		</ui:insert>
-	</ui:define>
-</ui:composition>
+		</ui:define>
+
+		<ui:define name="monFooter">
+			<ui:insert>
+				<ui:include src="/templates/footer.xhtml"></ui:include>
+			</ui:insert>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

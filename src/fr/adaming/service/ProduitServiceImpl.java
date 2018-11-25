@@ -100,4 +100,10 @@ public class ProduitServiceImpl implements IProduitService {
 		return pDao.getProductbyDouble(d1, d2);
 	}
 
+	@Override
+	public List<Produit> getAllProducts() {
+		
+		return pDao.getAllProducts();
+	}
+
 }

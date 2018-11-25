@@ -132,12 +132,18 @@ public class ClientManagedBean implements Serializable {
 		}
 
 	}
+	
+	public String deleteLinkClient() {
+		
+			return "deleteClient";
+	
+	}
 
 	public String deleteClient() {
 		int verif = clService.deleteClient(this.client);
 		if (verif != 0) {
 
-			return "ListeAdmin";
+			return "accueilSite";
 
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -150,7 +156,7 @@ public class ClientManagedBean implements Serializable {
 		return "updateClient";
 	}
 
-	public String updateClient(Client cl) {
+	public String updateClient() {
 		int verif = clService.updateClient(this.client);
 		if (verif != 0) {
 			Client clOut = clService.getClient(client);
