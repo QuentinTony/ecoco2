@@ -94,4 +94,10 @@ public class ProduitServiceImpl implements IProduitService {
 		return pDao.getProductbyClAndString(saisie, cl);
 	}
 
+	@Override
+	public List<Produit> getProductbyDouble(double d1, double d2) {
+		
+		return pDao.getProductbyDouble(d1, d2);
+	}
+
 }

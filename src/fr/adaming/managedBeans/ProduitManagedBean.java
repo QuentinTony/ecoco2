@@ -30,6 +30,8 @@ public class ProduitManagedBean implements Serializable {
 	HttpSession maSession;
 	private UploadedFile file;
 	private String saisie;
+	private double prix1;
+	private double prix2;
 
 	// constructeur vide
 	public ProduitManagedBean() {
@@ -58,6 +60,22 @@ public class ProduitManagedBean implements Serializable {
 		this.categorie = categorie;
 	}
 
+	public double getPrix1() {
+		return prix1;
+	}
+
+	public void setPrix1(double prix1) {
+		this.prix1 = prix1;
+	}
+
+	public double getPrix2() {
+		return prix2;
+	}
+
+	public void setPrix2(double prix2) {
+		this.prix2 = prix2;
+	}
+
 	public UploadedFile getFile() {
 		return file;
 	}
@@ -65,7 +83,7 @@ public class ProduitManagedBean implements Serializable {
 	public void setFile(UploadedFile file) {
 		this.file = file;
 	}
-	
+
 	public String getSaisie() {
 		return saisie;
 	}
@@ -84,12 +102,12 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	public String afficherProduit() {
-		
+
 		maSession.setAttribute("prSession", produit);
-		
+
 		return "afficherOneProduit";
 	}
-	
+
 	public String addLinkProduct() {
 		return "addProduct";
 	}
@@ -142,7 +160,7 @@ public class ProduitManagedBean implements Serializable {
 	public String updateProduct() {
 		this.produit.setPhoto(file.getContents());
 
-		int verif = pService.updateProduit(this.produit, this.client,this.categorie);
+		int verif = pService.updateProduit(this.produit, this.client, this.categorie);
 		if (verif != 0) {
 			List<Produit> listeProduits = pService.getProductbyClient(this.client);
 			maSession.setAttribute("listeProduitsSession", listeProduits);
@@ -152,7 +170,7 @@ public class ProduitManagedBean implements Serializable {
 					new FacesMessage("La modification n'a pas pu être effectuée"));
 			return "updateProduct";
 		}
- 
+
 	}
 
 	public String getProductbyCategory() {
@@ -168,48 +186,64 @@ public class ProduitManagedBean implements Serializable {
 
 		}
 	}
-	
+
 	public String getProductbySaisie() {
 		List<Produit> listeProduits = pService.getProductbyString(this.saisie);
 		if (listeProduits != null) {
 			maSession.setAttribute("listeProduitsSession", listeProduits);
 			return "afficherProduitsSaisie";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("La recherche n'a pas aboutie"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche n'a pas aboutie"));
 			return "accueilSite";
 
 		}
 	}
-	
+
+	public String getProductbyPrix() {
+		if (prix1 <= prix2) {
+			List<Produit> listeProduits = pService.getProductbyDouble(prix1, prix2);
+			if (listeProduits != null) {
+				maSession.setAttribute("listeProduitsSession", listeProduits);
+				return "afficherProduitsPrix";
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche n'a pas aboutie"));
+				return "accueilSite";
+
+			}
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Le prix minimum doit être inférieur ou égal au prix maximum"));
+			return "accueilSite";
+		}
+
+	}
+
 	public String getProductbyCatAndSaisie() {
 		categorie = (Categorie) maSession.getAttribute("caSession");
-		List<Produit> listeProduits = pService.getProductbyCatAndString(this.saisie,categorie);
+		List<Produit> listeProduits = pService.getProductbyCatAndString(this.saisie, categorie);
 		if (listeProduits != null) {
 			maSession.setAttribute("listeProduitsSession", listeProduits);
 			return "afficherProduitsSaisieCat";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("La recherche n'a pas aboutie"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche n'a pas aboutie"));
 			return "accueilSite";
 
 		}
 	}
-	
+
 	public String getProductbyClAndSaisie() {
 		client = (Client) maSession.getAttribute("clSession");
-		List<Produit> listeProduits = pService.getProductbyClAndString(this.saisie,client);
+		List<Produit> listeProduits = pService.getProductbyClAndString(this.saisie, client);
 		if (listeProduits != null) {
 			maSession.setAttribute("listeProduitsSession", listeProduits);
 			return "accueilClient";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("La recherche n'a pas aboutie"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche n'a pas aboutie"));
 			return "accueilClient";
 
 		}
 	}
-	
+
 	public String espaceclient() {
 		return "accueilClient";
 	}

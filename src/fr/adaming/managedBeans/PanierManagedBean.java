@@ -136,26 +136,20 @@ public class PanierManagedBean {
 				lc.setPrix(lc.getPrix() + lcElem.getPrix());
 				lc.setQuantite(lc.getQuantite() + lcElem.getQuantite());
 
-				System.out.println(lc.getQuantite());
-
 				liste.set(i, lc);
 				modif = true;
-				System.out.println(modif);
 				break;
 			}
 
 			i++;
 		}
 
-		System.out.println(modif);
 
 		if (modif == false) {
 			liste.add(lc);
 		}
 
 		if (lc.getProduit().getQuantite() >= lc.getQuantite()) {
-			System.out.println("stock : " + lc.getProduit().getQuantite());
-			System.out.println("dans la future ligne :" + lc.getQuantite());
 
 			panier.setListeLigneCommandes(liste);
 
@@ -177,8 +171,6 @@ public class PanierManagedBean {
 							+ "\nDéjà " + lc.getQuantite() + " dans votre panier !"));
 
 			liste.set(i, lcErreur);
-			System.out.println(liste);
-			System.out.println(lcErreur);
 
 			double prixTot = 0;
 			for (LigneCommande lcElem : liste) {
@@ -190,7 +182,7 @@ public class PanierManagedBean {
 
 			maSession.setAttribute("paSession", this.panier);
 
-			return this.afficherProduits();
+			return "afficherOneProduit";
 		}
 
 	}

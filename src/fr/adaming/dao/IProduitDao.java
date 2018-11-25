@@ -25,6 +25,8 @@ public interface IProduitDao {
 	
 	public List<Produit> getProductbyString (String saisie);
 	
+	public List<Produit> getProductbyDouble (double d1,double d2);
+	
 	public List<Produit> getProductbyCatAndString (String saisie,Categorie ca);
 	
 	public List<Produit> getProductbyClAndString (String saisie,Client cl);

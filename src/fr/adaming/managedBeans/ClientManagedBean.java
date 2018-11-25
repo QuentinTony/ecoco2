@@ -92,11 +92,12 @@ public class ClientManagedBean implements Serializable {
 			List<LigneCommande> lcOut = new ArrayList<LigneCommande>();
 
 			for (Commande co : listeCommande) {
-				lcOut = lcService.getAllLigneCommande(co);
-				for(LigneCommande lc : lcOut) {
+				List<LigneCommande> lcIn = lcService.getAllLigneCommande(co);
+				for(LigneCommande lc : lcIn) {
 					lc.setCommande(co);
 				}
-				co.setLignesCommandes(lcOut);
+				co.setLignesCommandes(lcIn);
+				lcOut.addAll(lcIn);
 			}
 
 			clOut.setListeCommandes(listeCommande);
@@ -178,6 +179,7 @@ public class ClientManagedBean implements Serializable {
 
 	public String deconnexion() {
 		maSession.removeAttribute("clSession");
+		maSession.removeAttribute("lcSession");
 		return "accueilSite";
 	}
 

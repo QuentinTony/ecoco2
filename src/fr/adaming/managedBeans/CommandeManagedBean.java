@@ -112,84 +112,61 @@ public class CommandeManagedBean implements Serializable {
 
 	// méthodes
 
+	public String annulerCommande() {
+		return "accueilSite";
+	}
+
 	public String passerCommande1() {
 
 		return "loginClientAchat";
 	}
 
-	public String passerCommande() {
+	public String passerCommande2() {
+
 		// test si client est inscrit
 		Client clOut = clService.isExist(client);
 
 		if (clOut != null) {
-			// instanciation de la nouvelle commande ac la date du jour
-			commande = new Commande(new Date());
-			// ajout de la commande à la BD
-			Commande coIn = coService.addCommande(commande, clOut);
+			maSession.setAttribute("clSession", clOut);
+			return "afficherRecapCommande";
+		} else {
 
-			if (coIn != null) {
-				// boucle pour ajouter chaque ligneCommande à la DB et mettre à jour le stock
-				// produit
-				int[] tabVerif = new int[listeLigneCommande.size()];
-				int i = 0;
-				int verif = 0;
-				for (LigneCommande lc : listeLigneCommande) {
-					LigneCommande lcIn = lcService.addLigneCommande(lc, coIn);
-					if (lcIn != null) {
-						Produit pIn = lcIn.getProduit();
-						pIn.setQuantite(pIn.getQuantite() - lcIn.getQuantite());
-						tabVerif[i] = prService.updateProduit(pIn);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Identifiants invalides"));
 
-						if (tabVerif[i] != 0) {
-							verif = 1;
-						} else {
-							verif = 0;
-							break;
-						}
+			return "loginClientAchat";
+		}
+	}
 
-						i++;
+	public String passerCommande() {
+		
+		Client clOut = (Client) maSession.getAttribute("clSession");
+		
+		// instanciation de la nouvelle commande ac la date du jour
+		commande = new Commande(new Date());
+		// ajout de la commande à la BD
+		Commande coIn = coService.addCommande(commande, clOut);
+
+		if (coIn != null) {
+			// boucle pour ajouter chaque ligneCommande à la DB et mettre à jour le stock
+			// produit
+			int[] tabVerif = new int[listeLigneCommande.size()];
+			int i = 0;
+			int verif = 0;
+			for (LigneCommande lc : listeLigneCommande) {
+				LigneCommande lcIn = lcService.addLigneCommande(lc, coIn);
+				if (lcIn != null) {
+					Produit pIn = lcIn.getProduit();
+					pIn.setQuantite(pIn.getQuantite() - lcIn.getQuantite());
+					tabVerif[i] = prService.updateProduit(pIn);
+
+					if (tabVerif[i] != 0) {
+						verif = 1;
 					} else {
-
-						FacesContext.getCurrentInstance().addMessage(null,
-								new FacesMessage("Erreur d'ajout de la ligne de commande"));
-
-						return "loginClientAchat";
-					}
-				}
-
-				if (verif != 0) {
-
-					try {
-						PdfClass.createPdf(coIn, clOut, panier);
-					} catch (IOException | DocumentException e) {
-						
-						e.printStackTrace();
+						verif = 0;
+						break;
 					}
 
-					MailClass.sendMailToCl(coIn, clOut, panier);
-					
-					for(LigneCommande lc : listeLigneCommande) {
-						Client clIn = lc.getProduit().getClient();
-						try {
-							PdfClass.createPdf(coIn, clOut, lc);
-						} catch (IOException | DocumentException e) {
-							
-							e.printStackTrace();
-						}
-						MailClass.sendMailToClVente(coIn, clIn, lc);
-					}
-					
-					Panier paIn = new Panier();
-					List<LigneCommande> listeIn = new ArrayList<LigneCommande>();
-					paIn.setPrixTotal(0);
-					paIn.setListeLigneCommandes(listeIn);
-					
-					maSession.setAttribute("paSession", paIn);
-
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La commande a été envoyée"));
-					
-					return "accueilSite";
-
+					i++;
 				} else {
 
 					FacesContext.getCurrentInstance().addMessage(null,
@@ -197,17 +174,52 @@ public class CommandeManagedBean implements Serializable {
 
 					return "loginClientAchat";
 				}
+			}
+
+			if (verif != 0) {
+
+				try {
+					PdfClass.createPdf(coIn, clOut, panier);
+				} catch (IOException | DocumentException e) {
+
+					e.printStackTrace();
+				}
+
+				MailClass.sendMailToCl(coIn, clOut, panier);
+
+				for (LigneCommande lc : listeLigneCommande) {
+					Client clIn = lc.getProduit().getClient();
+					try {
+						PdfClass.createPdf(coIn, clOut, lc);
+					} catch (IOException | DocumentException e) {
+
+						e.printStackTrace();
+					}
+					MailClass.sendMailToClVente(coIn, clIn, lc);
+				}
+
+				Panier paIn = new Panier();
+				List<LigneCommande> listeIn = new ArrayList<LigneCommande>();
+				paIn.setPrixTotal(0);
+				paIn.setListeLigneCommandes(listeIn);
+
+				maSession.setAttribute("paSession", paIn);
+
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La commande a été envoyée"));
+
+				return "accueilSite";
 
 			} else {
 
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erreur d'ajout de la commande"));
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage("Erreur d'ajout de la ligne de commande"));
 
 				return "loginClientAchat";
 			}
 
 		} else {
 
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Identifiants invalides"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erreur d'ajout de la commande"));
 
 			return "loginClientAchat";
 		}

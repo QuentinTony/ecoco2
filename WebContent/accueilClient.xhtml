@@ -67,7 +67,7 @@
 				<p:dataTable var="p" value="#{sessionScope.listeProduitsSession}"
 					paginator="true" rows="8">
 					<f:facet name="header">
-Liste des vos produits en vente sur notre site </f:facet>
+Liste de vos produits en vente sur notre site </f:facet>
 					<p:column headerText="Id" rendered="false">
 						<h:outputText value="#{p.idProduit}" />
 					</p:column>
@@ -121,7 +121,7 @@ Liste des vos produits en vente sur notre site </f:facet>
 				<p:dataTable id="dataTableCategories" var="lc"
 					value="#{sessionScope.lcSession}" paginator="true" rows="8">
 					<f:facet name="header">
-Liste des vos commandes sur notre site </f:facet>
+Liste de vos commandes sur notre site </f:facet>
 
 					<p:column headerText="Date de la commande">
 						<h:outputText value="#{lc.commande.dateCommande}" />

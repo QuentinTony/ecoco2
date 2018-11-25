@@ -68,6 +68,23 @@
 	}
 }
 
+@media screen and (max-width: 1300px) {
+	#headerResponsive {
+		display: none;
+	}
+	#footerResponsive {
+		display: none;
+	}
+	#footerResponsive2 {
+		position: absolute;
+		left: 5%;
+		bootom: 2%;
+		text-align: center;
+		color: DarkBlue;
+		font-size: 100%;
+	}
+}
+
 .logo {
 	position: absolute;
 	left: 10%;
@@ -179,7 +196,6 @@
 }
 
 .ui-state-default {
-	
 	border: 1px solid darkblue !important;
 }
 

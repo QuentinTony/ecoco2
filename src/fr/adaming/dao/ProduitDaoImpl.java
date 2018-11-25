@@ -110,8 +110,19 @@ public class ProduitDaoImpl implements IProduitDao {
 	public List<Produit> getProductbyClAndString(String saisie, Client cl) {
 
 		String req = "SELECT p FROM Produit as p WHERE cl_id=:pIdcl AND p.designation LIKE :pSaisie";
-		Query query = em.createQuery(req).setParameter("pSaisie", "%" + saisie + "%").setParameter("pIdcl",
-				cl.getId());
+		Query query = em.createQuery(req).setParameter("pSaisie", "%" + saisie + "%").setParameter("pIdcl", cl.getId());
+		List<Produit> liste = query.getResultList();
+		for (Produit p : liste) {
+			p.setImage("data:image/png;base64," + Base64.encodeBase64String(p.getPhoto()));
+		}
+		return liste;
+	}
+
+	@Override
+	public List<Produit> getProductbyDouble(double d1, double d2) {
+
+		String req = "SELECT p FROM Produit as p WHERE p.prix BETWEEN :pD1 AND :pD2";
+		Query query = em.createQuery(req).setParameter("pD1", d1).setParameter("pD2", d2);
 		List<Produit> liste = query.getResultList();
 		for (Produit p : liste) {
 			p.setImage("data:image/png;base64," + Base64.encodeBase64String(p.getPhoto()));
