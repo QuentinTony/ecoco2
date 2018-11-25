@@ -135,7 +135,7 @@ public class ProduitDaoImpl implements IProduitDao {
 		String req = "SELECT p FROM Produit as p";
 		Query query = em.createQuery(req);
 		List<Produit> liste = query.getResultList();
-		System.out.println(liste);
+
 		for (Produit p : liste) {
 			p.setImage("data:image/png;base64," + Base64.encodeBase64String(p.getPhoto()));
 		}

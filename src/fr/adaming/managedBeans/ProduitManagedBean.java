@@ -108,9 +108,7 @@ public class ProduitManagedBean implements Serializable {
 		this.client = (Client) maSession.getAttribute("clSession");
 		this.produit = new Produit();
 		this.categorie = new Categorie();
-		this.listeProduit =pService.getAllProducts();
 
-		
 	}
 
 	public String afficherProduit() {
@@ -259,7 +257,18 @@ public class ProduitManagedBean implements Serializable {
 	public String espaceclient() {
 		return "accueilClient";
 	}
-	
-	
+
+	public String affichAllProduits() {
+		listeProduit = pService.getAllProducts();
+		if (listeProduit != null) {
+
+			return "getAllProducts";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("La recherche n'a pas pu être effectuée"));
+			return "accueilSite";
+
+		}
+	}
 
 }
