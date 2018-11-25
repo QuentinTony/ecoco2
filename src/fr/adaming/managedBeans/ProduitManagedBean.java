@@ -108,6 +108,8 @@ public class ProduitManagedBean implements Serializable {
 		this.client = (Client) maSession.getAttribute("clSession");
 		this.produit = new Produit();
 		this.categorie = new Categorie();
+		this.listeProduit =pService.getAllProducts();
+
 		
 	}
 
@@ -258,15 +260,6 @@ public class ProduitManagedBean implements Serializable {
 		return "accueilClient";
 	}
 	
-	public String getAllProducts() {
-		List<Produit> listeOut=pService.getAllProducts();
-		if(listeOut!=null) {
-			this.listeProduit=listeOut;
-						return "getAllProducts";
-		}else {FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche n'a pas aboutie"));
-		return "accueilSite";
-			
-		}
-	}
+	
 
 }
