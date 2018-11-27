@@ -117,7 +117,13 @@ public class CommandeManagedBean implements Serializable {
 	}
 
 	public String passerCommande1() {
-
+		
+		Client clOut = (Client) maSession.getAttribute("clSession");
+		
+		if(clOut!=null) {
+			return "afficherRecapCommande";
+		}
+		
 		return "loginClientAchat";
 	}
 

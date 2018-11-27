@@ -81,6 +81,41 @@ public class ClientManagedBean implements Serializable {
 
 	}
 
+	public String loginLinkClient() {
+
+		Client clOut = (Client) maSession.getAttribute("clSession");
+
+		if (clOut != null) {
+			this.listeProduits = pService.getProductbyClient(clOut);
+			maSession.setAttribute("listeProduitsSession", listeProduits);
+
+			List<Commande> listeCommande = coService.getAllCommandes(clOut);
+
+			List<LigneCommande> lcOut = new ArrayList<LigneCommande>();
+
+			for (Commande co : listeCommande) {
+				List<LigneCommande> lcIn = lcService.getAllLigneCommande(co);
+				for (LigneCommande lc : lcIn) {
+					lc.setCommande(co);
+				}
+				co.setLignesCommandes(lcIn);
+				lcOut.addAll(lcIn);
+			}
+
+			clOut.setListeCommandes(listeCommande);
+
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clSession", clOut);
+
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("lcSession", lcOut);
+
+			return "accueilClient";
+
+		} else {
+			return "loginClient";
+		}
+
+	}
+
 	public String isExist() {
 		Client clOut = clService.isExist(this.client);
 		if (clOut != null) {
@@ -93,7 +128,7 @@ public class ClientManagedBean implements Serializable {
 
 			for (Commande co : listeCommande) {
 				List<LigneCommande> lcIn = lcService.getAllLigneCommande(co);
-				for(LigneCommande lc : lcIn) {
+				for (LigneCommande lc : lcIn) {
 					lc.setCommande(co);
 				}
 				co.setLignesCommandes(lcIn);
@@ -103,7 +138,7 @@ public class ClientManagedBean implements Serializable {
 			clOut.setListeCommandes(listeCommande);
 
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clSession", clOut);
-			
+
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("lcSession", lcOut);
 
 			return "accueilClient";
@@ -132,11 +167,11 @@ public class ClientManagedBean implements Serializable {
 		}
 
 	}
-	
+
 	public String deleteLinkClient() {
-		
-			return "deleteClient";
-	
+
+		return "deleteClient";
+
 	}
 
 	public String deleteClient() {
@@ -161,7 +196,7 @@ public class ClientManagedBean implements Serializable {
 		if (verif != 0) {
 			Client clOut = clService.getClient(client);
 			maSession.setAttribute("clSession", clOut);
-			
+
 			return "accueilClient";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
