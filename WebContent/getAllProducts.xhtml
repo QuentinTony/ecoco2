@@ -82,7 +82,7 @@
 
 			<h:form id="tableCat">
 				<p:dataGrid id="dataTableCategories" var="pr"
-					value="#{pMB.listeProduit}" columns="5" layout="grid" rows="15"
+					value="#{sessionScope.listeProduitsSession}" columns="5" layout="grid" rows="15"
 					paginator="true">
 					<f:facet name="header">
 Liste des produits du site  </f:facet>

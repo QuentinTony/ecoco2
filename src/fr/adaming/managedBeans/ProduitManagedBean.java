@@ -168,7 +168,14 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	public String updateProduct() {
-		this.produit.setPhoto(file.getContents());
+		
+		if(file.getSize()>0) {
+			this.produit.setPhoto(file.getContents());
+		}else {
+			Produit pOut = pService.getProduit(produit);
+			produit.setPhoto(pOut.getPhoto());
+			produit.setImage(pOut.getImage());
+		}
 
 		int verif = pService.updateProduit(this.produit, this.client, this.categorie);
 		if (verif != 0) {
@@ -261,7 +268,7 @@ public class ProduitManagedBean implements Serializable {
 	public String affichAllProduits() {
 		listeProduit = pService.getAllProducts();
 		if (listeProduit != null) {
-
+			maSession.setAttribute("listeProduitsSession", listeProduit);
 			return "getAllProducts";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,

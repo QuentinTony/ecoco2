@@ -131,7 +131,8 @@ public class CategorieManagedBean implements Serializable {
 
 	public String updateCategory() {
 
-		if (file != null) {
+		if (file.getSize() > 0) {
+
 			this.categorie.setPhoto(file.getContents());
 		} else {
 			Categorie caOut = caService.getCategory(categorie);
