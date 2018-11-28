@@ -37,6 +37,8 @@
 			<p:menuitem styleClass="menuitem" value="Espace Admin"
 				url="loginAdmin.xhtml" id="adm" />
 
+			<p:menuitem styleClass="menuitem" value="Déconnexion"
+				action="#{clMB.deconnexion}" id="deco" />
 
 			<f:facet name="categories">
 				<p:selectOneMenu value="#{caMB.categorie.idCategorie}">
@@ -44,11 +46,10 @@
 						itemLabel="#{cat.nom}" itemValue="#{cat.idCategorie}" />
 				</p:selectOneMenu>
 			</f:facet>
-			<p:menuitem id="searchbar" style="position: relative; left:240%;">
+			<p:menuitem id="searchbar" styleClass="searchbarStyle">
 				<p:inputText value="#{pMB.saisie}"
 					placeholder="Rechercher un produit" />
-				<h:commandLink action="#{pMB.getProductbySaisie}"
-					style="position:relative; left:233%;">
+				<h:commandLink action="#{pMB.getProductbySaisie}" id="loupe" styleClass="loupeStyle">
 					<h:graphicImage library="images" name="Search_26px.png" />
 				</h:commandLink>
 			</p:menuitem>

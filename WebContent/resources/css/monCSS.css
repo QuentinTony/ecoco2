@@ -68,6 +68,22 @@
 		color: DarkBlue;
 		font-size: 100%;
 	}
+	.loupeStyle {
+		position: relative !important;
+	}
+	.searchbarStyle {
+		position: relative !important;
+	}
+}
+
+.searchbarStyle {
+	position: relative !important;
+	left: 190% !important;
+}
+
+.loupeStyle {
+	position: relative !important;
+	left: 183% !important;
 }
 
 .logo {
@@ -182,12 +198,12 @@
 	border-radius: 10px;
 }
 
-th  {
+th {
 	background-color: red !important;
 	color: white !important;
 }
 
-.ui-datatable-header  {
+.ui-datatable-header {
 	background-color: red !important;
 	color: white ! important;
 	border: 2px solid darkblue !important;
@@ -195,4 +211,3 @@ th  {
 	border-top-right-radius: 10px;
 	border: 2px solid darkblue !important;
 }
-
